@@ -18,7 +18,11 @@ Route::get('/', function () {
     return view('front.home');
 });
 
-Route::get('/form', [OrderController::class, 'index'])->name('order');
+Route::get('/form', [OrderController::class, 'create'])->name('order');
+Route::post('/form', [OrderController::class, 'store'])->name('order.store');
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

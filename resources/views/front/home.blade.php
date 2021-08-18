@@ -4,6 +4,9 @@
 @section('hero')
     @include('front.layout.asset.hero')
 @endsection
+@section('marquee')
+    @include('front.layout.asset.marquee-up')
+@endsection
 @section('content')
 <div class="mt-5 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
     <div class="grid grid-cols-1 md:grid-cols-2">

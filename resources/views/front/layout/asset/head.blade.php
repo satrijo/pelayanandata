@@ -6,6 +6,8 @@
         <meta name="author" content="Satriyo Unggul Wicaksono">
         <meta name="description" content="Pelayanan data Penerimaan Negara Bukan Pajak mengenai data - data meteorologi maupun klimatologi yang ada di wilayah Sulawesi Tenggara">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+        <script src="{{ asset('js/app.js')}}"></script>
         <!--Jquery-->
         <script src="{{ asset('js/jquery.min.js')}}"></script>
         <!--Floating WhatsApp css-->
