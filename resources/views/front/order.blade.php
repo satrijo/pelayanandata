@@ -177,21 +177,20 @@
                     </label>
                 </div>
             </div>
-            <div class="bg-gray-200 grid grid-cols-2 gap-6 justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                <div class="auto-cols-max">
+            <div class="bg-gray-200 grid grid-cols-3 gap-6 justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                <div class="col-span-2">
                     <label class="block text-sm font-medium text-gray-700">
                     Parameter Cuaca
                     </label>
-                    <div class="flex flex-auto justify-center">
-                        <div class="mt-2 flex">
-                            <label class="inline-flex items-center mr-3 border-r-2 border-black pr-4">
-                                <input type="checkbox" name="parametercuaca[]" value="Angin">
-                                <span class="ml-2">Option 1</span>
+                    <div class="justify-center">
+                        <div class="mt-2 overflow-auto h-24">
+                            @foreach ($harga as $nilai )
+                            <label class="block items-center mr-3 pr-4">
+                                <input type="checkbox" name="parametercuaca[]" value="{{$nilai->id}}">
+                                <span class="ml-2">{{$nilai->namalayanan}} - Rp.{{$nilai->tarif}} per {{ $nilai->satuan }}</span>
                             </label>
-                            <label class="inline-flex items-center mr-3 border-r-2 border-black pr-4">
-                                <input type="checkbox" name="parametercuaca[]" value="suhu">
-                                <span class="ml-2">Option 1</span>
-                            </label>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -213,7 +212,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="auto-cols-max">
+                <div class="col-span-2">
                     <label class="block text-sm font-medium text-gray-700">
                         Keterangan
                     </label>

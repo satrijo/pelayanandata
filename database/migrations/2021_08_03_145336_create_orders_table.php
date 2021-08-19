@@ -15,16 +15,26 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('invoice')->nullable();
             $table->string('nama')->nullable();
             $table->string('nik')->nullable();
-            $table->string('pekerjaan')->nullable();
             $table->string('nohp')->nullable();
-            $table->string('instansi')->nullable();
-            $table->string('pendidikan')->nullable();
-            $table->text('alamat')->nullable();
-            $table->string('provinsi')->nullable();
             $table->string('email')->nullable();
-            $table->string('Permohonan_data')->nullable();
+            $table->string('instansi')->nullable();
+            $table->string('jenispelayanan')->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('suratpermohonan')->nullable();
+            $table->string('scanktp')->nullable();
+            $table->string('suratpengantar')->nullable();
+            $table->string('suratpernyataan')->nullable();
+            $table->string('parametercuaca')->nullable();
+            $table->string('periodedari')->nullable();
+            $table->string('periodesampai')->nullable();
+            $table->string('keterangan')->nullable();
+            $table->string('kode')->nullable();
+            $table->bigInteger('total')->nullable();
+            $table->string('qrcode')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

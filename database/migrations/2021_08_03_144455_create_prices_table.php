@@ -16,9 +16,10 @@ class CreatePricesTable extends Migration
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
             $table->string('namalayanan');
-            $table->string('jenislayanan');
+            $table->string('jenislayanan')->nullable();
             $table->integer('tarif');
             $table->string('satuan');
+            $table->string('status');
             $table->timestamps();
         });
     }
