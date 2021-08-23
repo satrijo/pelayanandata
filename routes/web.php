@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::get('/form', [OrderController::class, 'create'])->name('order');
 Route::post('/form', [OrderController::class, 'store'])->name('order.store');
+Route::get('/form/sukses/{id}', [OrderController::class, 'sukses'])->name('order.sukses');
 
 
 Route::prefix('/dashboard')->middleware(['auth'])->group(function () {

@@ -27,12 +27,14 @@ class CreateOrdersTable extends Migration
             $table->string('scanktp')->nullable();
             $table->string('suratpengantar')->nullable();
             $table->string('suratpernyataan')->nullable();
+            $table->string('proposal')->nullable();
             $table->string('parametercuaca')->nullable();
             $table->string('periodedari')->nullable();
             $table->string('periodesampai')->nullable();
             $table->string('keterangan')->nullable();
             $table->string('kode')->nullable();
-            $table->bigInteger('total')->nullable();
+            $table->string('pembayaran');
+            $table->integer('total')->nullable();
             $table->string('qrcode')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();

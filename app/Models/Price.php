@@ -9,5 +9,10 @@ class Price extends Model
 {
     use HasFactory;
 
-    protected $guarded = [''];
+    protected $guarded = [];
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
 }
