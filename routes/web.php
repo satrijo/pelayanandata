@@ -21,7 +21,10 @@ Route::get('/', function () {
 
 Route::get('/form', [OrderController::class, 'create'])->name('order');
 Route::post('/form', [OrderController::class, 'store'])->name('order.store');
-Route::get('/form/sukses/{id}', [OrderController::class, 'sukses'])->name('order.sukses');
+Route::get('/monitoring/{id}', [OrderController::class, 'sukses'])->name('order.sukses');
+Route::get('/monitoring/{id}/export', [OrderController::class, 'pdf'])->name('order.pdf');
+
+Route::get('/konfirmasi', [OrderController::class, 'konfirmasi'])->name('konfirmasi');
 
 
 Route::prefix('/dashboard')->middleware(['auth'])->group(function () {

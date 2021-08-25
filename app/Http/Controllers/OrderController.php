@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Price;
-use Illuminate\Contracts\Session\Session;
+use Barryvdh\DomPDF\Facade as PDF;
+use Session;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+
 
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -46,13 +49,14 @@ class OrderController extends Controller
             'parametercuaca'    => 'required',
             'periodedari'       => 'required',
             'periodesampai'     => 'required',
+            'keterangan'        => 'required',
 
         ]);
 
         $invoice = time();
 
         $qr = QrCode::format('png')->merge(url('images/logo_putih.png'), 0.25, true)->size(300)->margin(1)->errorCorrection('H')
-            ->generate('www.joglohub.com', public_path('images/qr/' . $invoice . '.png'));
+            ->generate(url('monitoring/' . $invoice), public_path('images/qr/' . $invoice . '.png'));
 
         $dari = $request->periodedari;
         $sampai = $request->periodesampai;
@@ -70,6 +74,10 @@ class OrderController extends Controller
         }
 
         $total = array_sum($push);
+
+        if ($request->jenispelayanan == "nolrupiah") {
+            $total = 0;
+        }
 
         // dd($request->file());
 
@@ -100,9 +108,19 @@ class OrderController extends Controller
         $order->prices()->sync($parameter);
 
         $id = $order->invoice;
+        $data = $order;
+        $mail = $order->toArray();
 
+        $produk = $order->prices()->get();
 
-        // return view('front.sukses');
+        $pdf = PDF::loadView('pdf.invoice', compact('data', 'produk'))->setPaper('a4', 'portrait');
+
+        Mail::send('email.laporan', $mail, function ($message) use ($mail, $pdf) {
+            $message->to($mail['email'])
+                ->subject("Pelayanan BMKG: "  . $mail['status'])
+                ->attachData($pdf->output(), "invoice-" . $mail['invoice'] . ".pdf");
+        });
+
         return redirect()->route('order.sukses', ['id' => $id])->withInput();
     }
 
@@ -110,6 +128,25 @@ class OrderController extends Controller
     {
         $data = Order::where('invoice', $id)->first();
 
-        return view('front.sukses', compact('data'));
+        $produk = $data->prices()->get();
+
+        return view('front.sukses', compact('data', 'produk'));
+    }
+
+    public function pdf($id)
+    {
+        $data = Order::where('invoice', $id)->first();
+
+        $produk = $data->prices()->get();
+
+        $pdf = PDF::loadView('pdf.invoice', compact('data', 'produk'))->setPaper('a4', 'portrait');
+        return $pdf->download($data->invoice . '.pdf');
+
+        // return view('pdf.invoice', compact('data', 'produk'));
+    }
+
+    public function konfirmasi()
+    {
+        //
     }
 }

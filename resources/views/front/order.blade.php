@@ -12,7 +12,7 @@
     <section class="bg-transparent dark:bg-gray-900 lg:pt-8 lg:flex lg:justify-center px-8">
         <div class="bg-white dark:bg-gray-800 lg:mx-10 lg:flex lg:max-w-5xl lg:shadow lg:rounded-lg">
             <div class="lg:w-1/2">
-                <div class="h-12 bg-cover bg-center lg:rounded-lg lg:h-full" style="background-image:url('/images/baubau.jpg')"></div>
+                <div class="h-12 bg-cover bg-center lg:rounded-lg lg:h-full" style="background-image:url('images/baubau.jpg')"></div>
             </div>
 
             <div class="max-w-xl px-6 lg:max-w-5xl lg:w-1/2">
@@ -100,7 +100,7 @@
                     Alamat
                 </label>
                 <div class="mt-1">
-                    <textarea id="alamat" name="alamat" rows="2" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Jl. Macan Raya No. 19 Kelurahan Cipete, Kecamatan Karang Nangka">{{ old('alamat') }}</textarea>
+                    <textarea required id="alamat" name="alamat" rows="2" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Jl. Macan Raya No. 19 Kelurahan Cipete, Kecamatan Karang Nangka">{{ old('alamat') }}</textarea>
                 </div>
             </div>
 
