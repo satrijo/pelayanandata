@@ -72,6 +72,15 @@ Monitoring:  {{ $data->status }}
                                     </span>
                                 </div>
                             </div>
+                        @elseif ($data->status == "Diproses")
+
+                            <div class="lg:w-2/3 mx-auto leading-relaxed text-base mb-20 p-2">
+                                <div class="bg-gray-100 p-4 rounded-md">
+                                    <h2 class="text-xl font-medium title-font text-gray-900 mb-5">Permohonan Sedang Diproses</h2>
+                                    <img src="{{url('/images/diproses.png')}}" />
+                                </div>
+                            </div>
+
                         @endif
 
                         <div class="flex justify-between grid-cols-2 mx-auto lg:w-4/5 w-full">

@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use DataTables;
 
 
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -22,9 +23,68 @@ class OrderController extends Controller
         return view('backend.order');
     }
 
-    public function show()
+    public function getJson()
     {
-        return view('backend.order-detail');
+
+        $data = Order::with('prices')->selectRaw('distinct orders.*')->get();
+
+        return DataTables::of($data)
+            ->addColumn('namalayanan', function ($data) {
+                return implode(', ', $data->prices->pluck('namalayanan')->toArray());
+            })
+            ->addColumn('action', function ($data) {
+                $actionBtn = "<a href='/dashboard/permohonan/$data->invoice/edit' class='edit btn btn-success btn-sm'>Edit</a>";
+                return $actionBtn;
+            })->editColumn('created_at', function ($data) {
+                return date('l, d M Y', strtotime($data->created_at));
+            })->editColumn('jenispelayanan', function ($data) {
+                return strtoupper($data->jenispelayanan);
+            })->editColumn('pembayaran', function ($data) {
+                return ucwords($data->pembayaran);
+            })
+
+            ->rawColumns(['namalayanan', 'action'])
+            ->make(true);
+    }
+
+    public function edit($id)
+    {
+        $data = Order::where('invoice', $id)->first();
+
+        $produk = $data->prices()->get();
+        return view('backend.edit-permohonan', compact('data', 'produk'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $data = Order::where('invoice', $id)->first();
+
+        $pesan = "*Hallo $data->nama* \n*Status Permohonan Data Cuaca: $request->status* \n \nNo. invoice anda: $data->invoice \nSilahkan cek di http://ptsp.meteobaubau.com/monitoring/$data->invoice untuk info lebih lanjut." . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin: 08114037700::";
+
+        try {
+            $baseApiUrl = getenv('API_BASEURL') ? getenv('API_BASEURL') : 'https://api.kirimwa.id/v1';
+            $reqParams = [
+                'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
+                'url' => $baseApiUrl . '/messages',
+                'method' => 'POST',
+                'payload' => json_encode([
+                    'message' => $pesan,
+                    'phone_number' => $data->nohp,
+                    'message_type' => 'text',
+                    'device_id' => 'redminote',
+                ])
+            ];
+
+            $response = $this->apiKirimWaRequest($reqParams);
+            // echo $response['body'];
+        } catch (\Exception $e) {
+            print_r($e);
+        }
+
+
+        $update = Order::where('invoice', $id)->first()->update(['status' => $request->status, 'infoadmin' => $request->infoadmin]);
+        return back();
     }
 
     public function create()
@@ -53,6 +113,8 @@ class OrderController extends Controller
 
         ]);
 
+        // dd($request);
+
         $invoice = time();
 
         $qr = QrCode::format('png')->merge(url('images/logo_putih.png'), 0.25, true)->size(300)->margin(1)->errorCorrection('H')
@@ -79,22 +141,33 @@ class OrderController extends Controller
             $total = 0;
         }
 
-        // dd($request->file());
+        $nohp = $request->nohp;
+
+        if (!preg_match('/[^+0-9]/', trim($nohp))) {
+            // cek apakah no hp karakter 1-3 adalah +62
+            if (substr(trim($nohp), 0, 3) == '+62') {
+                $hp = substr(trim($nohp), 1);
+            } elseif (substr(trim($nohp), 0, 1) == '0') {
+                $hp = '62' . substr(trim($nohp), 1);
+            } else if (substr(trim($nohp), 0, 1) == '8') {
+                $hp = '62' . trim($nohp);
+            }
+        }
 
         $order = Order::create([
             'invoice'           => $invoice,
             'nama'              => $request->nama,
             'nik'               => $request->nik,
-            'nohp'              => $request->nohp,
+            'nohp'              => $hp,
             'email'             => $request->email,
             'instansi'          => $request->instansi,
             'jenispelayanan'    => $request->jenispelayanan,
             'alamat'            => $request->alamat,
-            'suratpermohonan'   => $request->suratpermohonan->store('berkas'),
-            'scanktp'           => $request->scanktp->store('berkas'),
-            'suratpengantar'    => $request->suratpengantar ? $request->suratpengantar->store('berkas') : null,
-            'suratpernyataan'   => $request->suratpernyataan ? $request->suratpernyataan->store('berkas') : null,
-            'proposal'          => $request->proposal ? $request->proposal->store('berkas') : null,
+            'suratpermohonan'   => $request->suratpermohonan->store('public'),
+            'scanktp'           => $request->scanktp->store('public'),
+            'suratpengantar'    => $request->suratpengantar ? $request->suratpengantar->store('public') : null,
+            'suratpernyataan'   => $request->suratpernyataan ? $request->suratpernyataan->store('public') : null,
+            'proposal'          => $request->proposal ? $request->proposal->store('public') : null,
             'periodedari'       => $request->periodedari,
             'periodesampai'     => $request->periodesampai,
             'keterangan'        => $request->keterangan,
@@ -120,6 +193,56 @@ class OrderController extends Controller
                 ->subject("Pelayanan BMKG: "  . $mail['status'])
                 ->attachData($pdf->output(), "invoice-" . $mail['invoice'] . ".pdf");
         });
+
+
+        $pesan = "*Hallo $order->nama* \n*Permohonan Data Cuaca Sedang Ditinjau* \n \nNomor invoice anda adalah: $order->invoice \nTotal tarif Rp." . number_format($order->total, 2, ",", ".") . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin: 08114037700::";
+
+        $gambar = url($order->qrcode);
+
+        try {
+            $baseApiUrl = getenv('API_BASEURL') ? getenv('API_BASEURL') : 'https://api.kirimwa.id/v1';
+            $reqParams = [
+                'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
+                'url' => $baseApiUrl . '/messages',
+                'method' => 'POST',
+                'payload' => json_encode([
+                    'message' => 'https://img.okezone.com/content/2021/08/07/608/2452402/bmkg-pantau-24-titik-panas-di-sumut-ini-daftarnya-OCpqGDEzjN.jpg',
+                    'phone_number' => $hp,
+                    'message_type' => 'image',
+                    'device_id' => 'redminote',
+                    'caption' => $pesan,
+                ])
+            ];
+
+            $response = $this->apiKirimWaRequest($reqParams);
+            // echo $response['body'];
+        } catch (\Exception $e) {
+            print_r($e);
+        }
+
+        try {
+            $baseApiUrl = getenv('API_BASEURL') ? getenv('API_BASEURL') : 'https://api.kirimwa.id/v1';
+            $reqParams = [
+                'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
+                'url' => $baseApiUrl . '/messages',
+                'method' => 'POST',
+                'payload' => json_encode([
+                    'message' => "Notifikasi Permohonan data atas nama \n$order->nama \nInstansi: $order->instansi \n\nNIK: $order->nik \nInvoice: $order->invoice \nNo. WA: $order->nohp  \n\n ::Pesan ini dibuat otomatis:: ",
+                    'phone_number' => '6282111119138-1629897035',
+                    'message_type' => 'text',
+                    'device_id' => 'redminote',
+                    'is_group_message' => true
+                ])
+            ];
+
+            $response = $this->apiKirimWaRequest($reqParams);
+            // echo $response['body'];
+        } catch (\Exception $e) {
+            print_r($e);
+        }
+
+        // dd($response['body']);
+
 
         return redirect()->route('order.sukses', ['id' => $id])->withInput();
     }
@@ -148,5 +271,46 @@ class OrderController extends Controller
     public function konfirmasi()
     {
         //
+    }
+
+    function apiKirimWaRequest(array $params)
+    {
+        $httpStreamOptions = [
+            'method' => $params['method'] ?? 'GET',
+            'header' => [
+                'Content-Type: application/json',
+                'Authorization: Bearer ' . ($params['token'] ?? '')
+            ],
+            'timeout' => 15,
+            'ignore_errors' => true
+        ];
+
+        if ($httpStreamOptions['method'] === 'POST') {
+            $httpStreamOptions['header'][] = sprintf('Content-Length: %d', strlen($params['payload'] ?? ''));
+            $httpStreamOptions['content'] = $params['payload'];
+        }
+
+        // Join the headers using CRLF
+        $httpStreamOptions['header'] = implode("\r\n", $httpStreamOptions['header']) . "\r\n";
+
+        $stream = stream_context_create(['http' => $httpStreamOptions]);
+        $response = file_get_contents($params['url'], false, $stream);
+
+        // Headers response are created magically and injected into
+        // variable named $http_response_header
+        $httpStatus = $http_response_header[0];
+
+        preg_match('#HTTP/[\d\.]+\s(\d{3})#i', $httpStatus, $matches);
+
+        if (!isset($matches[1])) {
+            throw new \Exception('Can not fetch HTTP response header.');
+        }
+
+        $statusCode = (int)$matches[1];
+        if ($statusCode >= 200 && $statusCode < 300) {
+            return ['body' => $response, 'statusCode' => $statusCode, 'headers' => $http_response_header];
+        }
+
+        throw new \Exception($response, $statusCode);
     }
 }

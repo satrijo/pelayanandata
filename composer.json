@@ -13,7 +13,8 @@
         "laravel/framework": "^8.5.23",
         "laravel/tinker": "^2.5",
         "sentry/sentry-laravel": "^2.8",
-        "simplesoftwareio/simple-qrcode": "^4.2"
+        "simplesoftwareio/simple-qrcode": "^4.2",
+        "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

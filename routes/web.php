@@ -28,12 +28,19 @@ Route::get('/konfirmasi', [OrderController::class, 'konfirmasi'])->name('konfirm
 
 
 Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
+
+    //dashboard
     Route::get('/', function () {
         return view('backend.dashboard');
     })->name('dashboard');
-    Route::get('/permohonan', [OrderController::class, 'index'])->name('permohonan');
-    Route::get('/permohonan/detail', [OrderController::class, 'show'])->name('permohonan.detail');
 
+    //permohonan
+    Route::get('/permohonan', [OrderController::class, 'index'])->name('permohonan');
+    Route::get('/permohonan/json', [OrderController::class, 'getJson'])->name('permohonanjson');
+    Route::get('/permohonan/{id}/edit', [OrderController::class, 'edit'])->name('permohonan.edit');
+    Route::put('/permohonan/{id}/update', [OrderController::class, 'update'])->name('permohonan.update');
+
+    //Prices
     Route::get('/tarif', [PriceController::class, 'create'])->name('tarif');
     Route::post('/tarif/store', [PriceController::class, 'store'])->name('tarif.store');
     Route::get('/tarif/edit/{id}', [PriceController::class, 'edit'])->name('tarif.edit');

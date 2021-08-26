@@ -41,7 +41,7 @@
                     Nomor KTP (KTP)
                     </label>
                     <div class="mt-1 flex rounded-md shadow-sm">
-                    <input value="{{ old('nik') }}" type="text" name="nik" id="nik" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="contoh: 6603042903940002" required>
+                    <input value="{{ old('nik') }}" type="number" name="nik" id="nik" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="contoh: 6603042903940002" required>
                     </div>
                 </div>
             </div>
@@ -267,7 +267,7 @@
                         Keterangan
                     </label>
                     <div class="mt-1">
-                        <textarea id="keterangan" name="keterangan" rows="2" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Contoh: Data digunakan untuk menjadi rujukan dalam menentukan pembangunan Jembatan di Wilayah Selat Buton"></textarea>
+                        <textarea required id="keterangan" name="keterangan" rows="2" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Contoh: Data digunakan untuk menjadi rujukan dalam menentukan pembangunan Jembatan di Wilayah Selat Buton"></textarea>
                     </div>
                 </div>
 
