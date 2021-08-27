@@ -60,7 +60,11 @@ class OrderController extends Controller
 
         $data = Order::where('invoice', $id)->first();
 
-        $pesan = "*Hallo $data->nama* \n*Status Permohonan Data Cuaca: $request->status* \n \nNo. invoice anda: $data->invoice \nSilahkan cek di http://ptsp.meteobaubau.com/monitoring/$data->invoice untuk info lebih lanjut." . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin: 08114037700::";
+        $request->infoadmin = is_null($request->infoadmin) ? 'Tidak ada pesan dari admin' : $request->infoadmin;
+        $request->data = is_null($request->data) ? $data->data : $request->data->store('public/dataselesai');
+
+
+        $pesan = "*Hallo $data->nama* \n```Status Permohonan Data Cuaca: $request->status``` \n\n```Note: $request->infoadmin```\n********* \n\nNo. invoice anda: $data->invoice \nSilahkan cek di http://ptsp.meteobaubau.com/monitoring/$data->invoice untuk info lebih lanjut." . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin: 08114037700::";
 
         try {
             $baseApiUrl = getenv('API_BASEURL') ? getenv('API_BASEURL') : 'https://api.kirimwa.id/v1';
@@ -83,7 +87,11 @@ class OrderController extends Controller
         }
 
 
-        $update = Order::where('invoice', $id)->first()->update(['status' => $request->status, 'infoadmin' => $request->infoadmin]);
+        $update = Order::where('invoice', $id)->first()->update([
+            'status'    => $request->status,
+            'infoadmin' => $request->infoadmin,
+            'data'      => $request->data,
+        ]);
         return back();
     }
 
@@ -163,11 +171,11 @@ class OrderController extends Controller
             'instansi'          => $request->instansi,
             'jenispelayanan'    => $request->jenispelayanan,
             'alamat'            => $request->alamat,
-            'suratpermohonan'   => $request->suratpermohonan->store('public'),
-            'scanktp'           => $request->scanktp->store('public'),
-            'suratpengantar'    => $request->suratpengantar ? $request->suratpengantar->store('public') : null,
-            'suratpernyataan'   => $request->suratpernyataan ? $request->suratpernyataan->store('public') : null,
-            'proposal'          => $request->proposal ? $request->proposal->store('public') : null,
+            'suratpermohonan'   => $request->suratpermohonan->store('public/datapermohonan'),
+            'scanktp'           => $request->scanktp->store('public/datascanktp'),
+            'suratpengantar'    => $request->suratpengantar ? $request->suratpengantar->store('public/datasuratpengantar') : null,
+            'suratpernyataan'   => $request->suratpernyataan ? $request->suratpernyataan->store('public/datasuratpernyataan') : null,
+            'proposal'          => $request->proposal ? $request->proposal->store('public/datapengantar') : null,
             'periodedari'       => $request->periodedari,
             'periodesampai'     => $request->periodesampai,
             'keterangan'        => $request->keterangan,

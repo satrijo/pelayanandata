@@ -72,12 +72,19 @@ Monitoring:  {{ $data->status }}
                                     </span>
                                 </div>
                             </div>
-                        @elseif ($data->status == "Diproses")
+                        @elseif (($data->status == "Diproses") || ($data->status == "Selesai")  )
 
                             <div class="lg:w-2/3 mx-auto leading-relaxed text-base mb-20 p-2">
                                 <div class="bg-gray-100 p-4 rounded-md">
-                                    <h2 class="text-xl font-medium title-font text-gray-900 mb-5">Permohonan Sedang Diproses</h2>
-                                    <img src="{{url('/images/diproses.png')}}" />
+                                    <h2 class="text-xl font-medium title-font text-gray-900">Permohonan anda: {{$data->status}}</h2>
+                                    <span class="font-mono mb-5">Note: {{$data->infoadmin}} </span>
+                                    @if ($data->status == 'Selesai')
+                                        <a href="{{ Storage::url($data->data) }}" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                            <p class="w-auto text-center bg-blue-600 text-white rounded-md py-2 px-4 mt-8 mb-3">Download Data Permohonan</p>
+                                        </a>
+                                    @endif
+                                    <img class="mt-5" src="{{url('/images/'.strtolower($data->status).'.png')}}" />
+
                                 </div>
                             </div>
 

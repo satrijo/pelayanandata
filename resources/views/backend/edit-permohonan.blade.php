@@ -35,8 +35,8 @@
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 <ul role="list" class="border border-gray-200 rounded-md divide-y divide-gray-200">
-                                <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                <li class="pl-3 pr-4 py-3 block items-center justify-between text-sm">
+                                    <div class="mt-1 flex rounded-md shadow-sm mb-4">
                                         <select onchange="yesnoCheck(this);" name="status" id="status" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-max rounded-md sm:text-sm border-gray-300">
                                             <option value="Batal" {{ $data->status == 'Batal' ? 'selected' : ''}}>Batal</option>
                                             <option value="Menunggu Pembayaran" {{ $data->status == 'Menunggu Pembayaran' ? 'selected' : ''}}>Menunggu Pembayaran</option>
@@ -47,10 +47,23 @@
                                         <button type="submit" class="ml-6 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Update Status
                                         </button>
+
                                     </div>
+                                    <span class="font-mono ml-3">Note: {{$data->infoadmin}} </span>
+
                                 </li>
                                 <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
                                     <input type="text" name="infoadmin" id="infoadmin" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300" placeholder="Pesan untuk pemohon (isi jika ada)">
+                                </li>
+                                <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm" id="ifYes"
+                                @if ($data->status !== "Selesai")
+                                    style="display: none;">
+                                @endif
+
+                                    <div class="flex text-sm text-gray-600 no-underline">
+                                        <input id="data" name="data" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
+                                        <p class="pl-1">pdf or image only</p>
+                                    </div>
                                 </li>
                                 </ul>
                             </dd>
