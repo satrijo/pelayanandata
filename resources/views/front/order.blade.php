@@ -251,11 +251,12 @@
                         @enderror
                     </div>
 
-                    <label class="block text-sm font-medium text-gray-700 pt-3">
+                    <label class="block text-sm font-medium text-gray-700 pt-3" id="nolrupiah" >
                     Pembayaran
                     </label>
-                    <div class="mt-1 flex rounded-md shadow-sm">
-                        <select required name="pembayaran" id="pembayaran" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300">
+                    <div class="mt-1 flex rounded-md shadow-sm " id="nolrupiah2" >
+                        <select required name="pembayaran" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300">
+                            <option>Pilih jenis pembayaran</option>
                             <option value="transfer">Transfer</option>
                             <option value="tunai">Cash/Tunai</option>
                         </select>
@@ -302,8 +303,16 @@
     function yesnoCheck(that) {
     if (that.value == "nolrupiah") {
         document.getElementById("ifYes").style = " ";
+        document.getElementById("nolrupiah").style.display = "none";
+        document.getElementById("nolrupiah2").style.display = "none";
+
+
     } else {
         document.getElementById("ifYes").style.display = "none";
+        document.getElementById("nolrupiah").style = " ";
+        document.getElementById("nolrupiah2").style = " ";
+
+
     }
 }
 </script>

@@ -39,7 +39,11 @@
                                     <div class="mt-1 flex rounded-md shadow-sm mb-4">
                                         <select onchange="yesnoCheck(this);" name="status" id="status" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-max rounded-md sm:text-sm border-gray-300">
                                             <option value="Batal" {{ $data->status == 'Batal' ? 'selected' : ''}}>Batal</option>
-                                            <option value="Menunggu Pembayaran" {{ $data->status == 'Menunggu Pembayaran' ? 'selected' : ''}}>Menunggu Pembayaran</option>
+                                            <option value="Permohonan Diterima" {{ $data->status == 'Permohonan Diterima' ? 'selected' : ''}}>Permohonan Diterima</option>
+                                            <option value="Permohonan Bermasalah" {{ $data->status == 'Permohonan Bermasalah' ? 'selected' : ''}}>Permohonan Bermasalah</option>
+                                            @if ($data->pelayanan == "pnbp")
+                                                <option value="Menunggu Pembayaran" {{ $data->status == 'Menunggu Pembayaran' ? 'selected' : ''}}>Menunggu Pembayaran</option>
+                                            @endif
                                             <option value="Diproses" {{ $data->status == 'Diproses' ? 'selected' : ''}}>Diproses</option>
                                             <option value="Selesai" {{ $data->status == 'Selesai' ? 'selected' : ''}}>Selesai</option>
                                         </select>
@@ -76,7 +80,7 @@
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 <ul role="list" class="border border-gray-200 rounded-md divide-y divide-gray-200">
                                 <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                    <input value="{{$data->officer}}" type="text" name="officer" id="officer" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300" placeholder="Isi inisial petugas, contoh: Satriyo">
+                                    <input required value="{{$data->officer}}" type="text" name="officer" id="officer" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300" placeholder="Isi inisial petugas, contoh: Satriyo">
                                 </li>
                                 </ul>
                             </dd>

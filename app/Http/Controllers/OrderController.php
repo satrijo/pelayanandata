@@ -182,10 +182,10 @@ class OrderController extends Controller
             'periodesampai'     => $request->periodesampai,
             'keterangan'        => $request->keterangan,
             'kode'              => $request->kode,
-            'pembayaran'        => $request->pembayaran,
+            'pembayaran'        => $request->jenispelayanan == "pnbp" ? $request->pembayaran : "nol rupiah",
             'total'             => $total,
             'qrcode'            => '/images/qr/' . $invoice . '.png',
-            'status'            => 'Menunggu Pembayaran',
+            'status'            => 'Permohonan Diterima',
         ]);
 
         $order->prices()->sync($parameter);

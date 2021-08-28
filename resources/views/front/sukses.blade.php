@@ -87,6 +87,28 @@ Monitoring:  {{ $data->status }}
 
                                 </div>
                             </div>
+                        @elseif ($data->status == "Permohonan Diterima")
+
+                            <div class="lg:w-2/3 mx-auto leading-relaxed text-base mb-20 p-2">
+                                <div class="bg-gray-100 p-4 rounded-md">
+                                    <h2 class="text-xl font-medium title-font text-gray-900">{{$data->status}}, Silahkan Menunggu Konfirmasi Admin</h2>
+                                    {{-- <span class="font-mono mb-5">Note: {{$data->infoadmin}} </span> --}}
+                                    <img class="mt-5" src="{{url('/images/diterima.png')}}" />
+
+                                </div>
+                            </div>
+
+
+                        @elseif ($data->status == "Permohonan Bermasalah")
+
+                            <div class="lg:w-2/3 mx-auto leading-relaxed text-base mb-20 p-2">
+                                <div class="bg-gray-100 p-4 rounded-md">
+                                    <h2 class="text-xl font-medium title-font text-gray-900">{{$data->status}}, Silahkan berdiskusi dengan admin</h2>
+                                    <span class="font-mono mb-5">Note: {{$data->infoadmin}} </span>
+                                    <img class="mt-5" src="{{url('/images/bermasalah.png')}}" />
+
+                                </div>
+                            </div>
 
                         @endif
 
