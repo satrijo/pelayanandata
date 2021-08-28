@@ -216,7 +216,7 @@
                             @foreach ($harga as $nilai )
                             <label class="block items-center mr-3 pl-4">
                                 <input type="checkbox" name="parametercuaca[]" value="{{$nilai->id}}">
-                                <span class="ml-2">{{$nilai->namalayanan}} - Rp.{{$nilai->tarif}} per {{ $nilai->satuan }}</span>
+                                <span class="ml-2">{{$nilai->namalayanan}} - Rp.{{number_format($nilai->tarif,2,',','.')}} per {{ $nilai->satuan }}</span>
                             </label>
                             @endforeach
                         </div>
