@@ -223,7 +223,7 @@ class OrderController extends Controller
                     'phone_number' => '6282111119138-1629897035',
                     'message_type' => 'text',
                     'device_id' => 'redminote',
-                    'is_group_message' => true
+                    'is_group_message' => true,
                 ])
             ];
 
