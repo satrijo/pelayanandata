@@ -66,7 +66,7 @@ Monitoring:  {{ $data->status }}
                                     <h2 class="text-xl font-medium title-font text-gray-900 ">Informasi Pembayaran</h2>
                                     <span>
                                         Silahkan Melakukan Transfer Ke Rekening<br>
-                                        BANK SYARIAH INDONESIA: 8765444111 <br>
+                                        BANK SYARIAH INDONESIA: 7141499372 <br>
                                         a/n Satriyo Unggul Wicaksono<br>
                                         senilai Rp.{{ number_format($data->total,2) }}
                                     </span>

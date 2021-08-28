@@ -198,7 +198,7 @@ class OrderController extends Controller
                 'url' => $baseApiUrl . '/messages',
                 'method' => 'POST',
                 'payload' => json_encode([
-                    'message' => 'https://img.okezone.com/content/2021/08/07/608/2452402/bmkg-pantau-24-titik-panas-di-sumut-ini-daftarnya-OCpqGDEzjN.jpg',
+                    'message' => $gambar,
                     'phone_number' => $hp,
                     'message_type' => 'image',
                     'device_id' => 'redminote',
