@@ -192,13 +192,13 @@ class OrderController extends Controller
         $pesan = "*Hallo $order->nama* \n*Permohonan Data Cuaca Sedang Ditinjau* \n \nNomor invoice anda adalah: $order->invoice \nTotal tarif Rp." . number_format($order->total, 2, ",", ".") . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin: 08114037700::";
         $gambar = url($order->qrcode);
         try {
-            $baseApiUrl = getenv('API_BASEURL') ? getenv('API_BASEURL') : 'https://api.kirimwa.id/v1';
+            $baseApiUrl = 'https://api.kirimwa.id/v1';
             $reqParams = [
                 'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
                 'url' => $baseApiUrl . '/messages',
                 'method' => 'POST',
                 'payload' => json_encode([
-                    'message' => $gambar,
+                    'message' => 'https://www.androidfreeware.net/img2/com-app-testpiwikapp.jpg',
                     'phone_number' => $hp,
                     'message_type' => 'image',
                     'device_id' => 'redminote',
@@ -213,7 +213,7 @@ class OrderController extends Controller
         }
 
         try {
-            $baseApiUrl = getenv('API_BASEURL') ? getenv('API_BASEURL') : 'https://api.kirimwa.id/v1';
+            $baseApiUrl = 'https://api.kirimwa.id/v1';
             $reqParams = [
                 'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
                 'url' => $baseApiUrl . '/messages',
