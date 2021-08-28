@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Price;
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
@@ -90,6 +91,7 @@ class OrderController extends Controller
         $update = Order::where('invoice', $id)->first()->update([
             'status'    => $request->status,
             'infoadmin' => $request->infoadmin,
+            'officer' => $request->officer,
             'data'      => $request->data,
         ]);
         return back();
@@ -187,26 +189,8 @@ class OrderController extends Controller
         ]);
 
         $order->prices()->sync($parameter);
-
-        $id = $order->invoice;
-        $data = $order;
-        $mail = $order->toArray();
-
-        $produk = $order->prices()->get();
-
-        $pdf = PDF::loadView('pdf.invoice', compact('data', 'produk'))->setPaper('a4', 'portrait');
-
-        Mail::send('email.laporan', $mail, function ($message) use ($mail, $pdf) {
-            $message->to($mail['email'])
-                ->subject("Pelayanan BMKG: "  . $mail['status'])
-                ->attachData($pdf->output(), "invoice-" . $mail['invoice'] . ".pdf");
-        });
-
-
         $pesan = "*Hallo $order->nama* \n*Permohonan Data Cuaca Sedang Ditinjau* \n \nNomor invoice anda adalah: $order->invoice \nTotal tarif Rp." . number_format($order->total, 2, ",", ".") . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin: 08114037700::";
-
         $gambar = url($order->qrcode);
-
         try {
             $baseApiUrl = getenv('API_BASEURL') ? getenv('API_BASEURL') : 'https://api.kirimwa.id/v1';
             $reqParams = [
@@ -251,6 +235,7 @@ class OrderController extends Controller
 
         // dd($response['body']);
 
+        $id = $order->invoice;
 
         return redirect()->route('order.sukses', ['id' => $id])->withInput();
     }
@@ -258,6 +243,9 @@ class OrderController extends Controller
     public function sukses($id)
     {
         $data = Order::where('invoice', $id)->first();
+
+        $emailQueue = (new \App\Jobs\SendEmailJob($id))->delay(Carbon::now()->addSeconds(10));
+        dispatch($emailQueue);
 
         $produk = $data->prices()->get();
 

@@ -29,7 +29,7 @@
                             @csrf
                             @method('PUT')
 
-                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-800">
                             Status
                             </dt>
@@ -49,7 +49,7 @@
                                         </button>
 
                                     </div>
-                                    <span class="font-mono ml-3">Note: {{$data->infoadmin}} </span>
+                                    <span class="font-mono ml-3">Log note terakhir: {{$data->infoadmin}} </span>
 
                                 </li>
                                 <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
@@ -69,10 +69,29 @@
                             </dd>
                         </div>
 
-
+                        <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-800">
+                            Petugas Forecast
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <ul role="list" class="border border-gray-200 rounded-md divide-y divide-gray-200">
+                                <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                                    <input value="{{$data->officer}}" type="text" name="officer" id="officer" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300" placeholder="Isi inisial petugas, contoh: Satriyo">
+                                </li>
+                                </ul>
+                            </dd>
+                        </div>
 
 
                         </form>
+                         <div class="px-4 py-5 sm:px-6">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            Informasi Detail Permohonan
+                            </h3>
+                            <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                            Harap dicek kembali kelengkapannya.
+                            </p>
+                        </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                             No. Invoice

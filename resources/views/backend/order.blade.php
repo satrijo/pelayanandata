@@ -24,6 +24,7 @@
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pembayaran</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Petugas</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Permohonan</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
                                 </tr>
@@ -54,6 +55,7 @@
                                 {data: 'jenispelayanan', name: 'jenispelayanan'},
                                 {data: 'pembayaran', name: 'pembayaran'},
                                 {data: 'status', name: 'status'},
+                                {data: 'officer', name: 'officer'},
                                 {data: 'created_at', name: 'created_at'},
                                 {
                                     data: 'action',
