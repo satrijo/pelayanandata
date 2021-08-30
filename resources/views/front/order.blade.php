@@ -12,11 +12,11 @@
     <div class="container mx-auto px-4">
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
 
-            <div class="bg-white dark:bg-gray-800 shadow- sm:rounded-lg md:px-5 py-3">
+            <div class="bg-white dark:bg-gray-800 shadow- sm:rounded-lg md:px-5 md:py-3">
                 <form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mx-10">
-                    <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                    <div class="md:px-4 py-5 bg-white space-y-6 sm:p-6">
                         <div class="md:grid md:grid-cols-2 gap-6 mt-8">
                             <div class="auto-cols-max sm:mb-5 md:mb-0">
                                 <label class="block text-sm font-medium text-gray-700">
