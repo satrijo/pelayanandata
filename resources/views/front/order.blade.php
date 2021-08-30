@@ -9,7 +9,7 @@
 
 @section('content')
 <section class="relative py-16 bg-gray-300">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto md:px-4">
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
 
             <div class="bg-white dark:bg-gray-800 shadow- sm:rounded-lg md:px-5 md:py-3">
@@ -271,7 +271,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 justify-between md:flex items-center">
+                    <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 justify-between md:flex items-center mb-10">
                         <div>
                             <input type="checkbox" required>
                             <span class="text-sm">
