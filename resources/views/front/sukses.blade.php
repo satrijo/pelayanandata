@@ -12,9 +12,9 @@ Monitoring:  {{ $data->status }}
 
 @section('content')
 <section class="relative py-16 bg-gray-300">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto md:px-4">
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
-            <div class="bg-white dark:bg-gray-800 shadow- sm:rounded-lg px-10 py-3">
+            <div class="bg-white dark:bg-gray-800 shadow- sm:rounded-lg md:px-10 py-3">
 
     <script>
             (function (global) {
@@ -61,9 +61,9 @@ Monitoring:  {{ $data->status }}
         })(window);
         </script>
 
-        <div class="bg-white dark:bg-gray-800 shadow- sm:rounded-b-lg px-5 py-3 -mt-2">
+        <div class="bg-white dark:bg-gray-800 shadow- sm:rounded-b-lg md:px-5 py-3 -mt-2">
             <section class="text-gray-600 body-font">
-                <div class="container px-5 py-20 mx-auto">
+                <div class="container md:px-5 py-20 mx-auto">
                     <div class="flex flex-col md:text-center w-full mb-8 ">
                         <h1 class="sm:text-4xl text-center text-3xl font-medium title-font mb-2 text-gray-900">Status Monitoring Permohonan Data</h1>
                         <p class="lg:w-2/3 text-center mx-auto leading-relaxed text-base mb-20">Informasi mengenai progres permohonan data yang diperbaharui secara berkala, Pastikan telah melakukan pembayaran agar permohonan anda segera ditindaklanjuti.</p>
@@ -119,7 +119,7 @@ Monitoring:  {{ $data->status }}
 
                         @endif
 
-                        <div class="md:flex md:justify-between md:grid-cols-2 mx-auto lg:w-2/3 sm:w-full md:w-2/3">
+                        <div class="md:flex md:justify-between md:grid-cols-2 sm:mx-8 lg:mx-auto lg:w-2/3 sm:w-full md:w-2/3">
                             <div class="md:block md:auto-cols-max text-left">
                                 <p class="mx-auto leading-relaxed text-base font-bold">Invoice: {{$data->invoice}} </p>
                                 <p class="mx-auto leading-relaxed text-base">Dibuat: {{ date('l, d M Y', strtotime($data->created_at))}} </p>
@@ -139,7 +139,7 @@ Monitoring:  {{ $data->status }}
                             </div>
                         </div>
                     </div>
-                    <div id="report" class="lg:w-2/3 md:w-2/3 mx-auto overflow-auto">
+                    <div id="report" class="lg:w-2/3 md:w-2/3 sm:mx-8 lg:mx-auto overflow-auto">
                       <p class="mx-auto leading-relaxed text-base text-left font-bold">Informasi Produk:</p>
                     <table class="table-auto w-full text-left whitespace-no-wrap">
                         <thead>

@@ -100,9 +100,9 @@
                                 Surat Permohonan Instansi/Universitas
                                 </label>
                                 <label for="suratpermohonan" class="relative cursor-pointer bg-white rounded-md no-underline">
-                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                     <div class="space-y-1 text-center">
-                                        <div class="flex text-sm text-gray-600 no-underline">
+                                        <div class="md:flex text-sm text-gray-600 no-underline">
                                             <input id="suratpermohonan" name="suratpermohonan" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
                                             <p class="pl-1">pdf or image only</p>
                                         </div>
@@ -119,9 +119,9 @@
                                     Scan/Foto KTP
                                 </label>
                                 <label for="scanktp" class="relative cursor-pointer bg-white rounded-md no-underline">
-                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                     <div class="space-y-1 text-center">
-                                        <div class="flex text-sm text-gray-600 no-underline">
+                                        <div class="flex md:text-sm text-gray-600 no-underline">
                                             <input id="scanktp" name="scanktp" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
                                             <p class="pl-1">pdf or image only</p>
                                         </div>
@@ -146,9 +146,9 @@
                                     Surat Pengantar dari Kampus / Instansi
                                 </label>
                                 <label for="suratpengantar" class="relative cursor-pointer bg-white rounded-md no-underline">
-                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                     <div class="space-y-1 text-center">
-                                        <div class="flex text-sm text-gray-600 no-underline">
+                                        <div class="md:flex text-sm text-gray-600 no-underline">
                                             <input id="suratpengantar" name="suratpengantar" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
                                             <p class="pl-1">pdf or image only</p>
                                         </div>
@@ -164,9 +164,9 @@
                                     Surat Pernyataan tidak Penyalahgunaan Data
                                 </label>
                                 <label for="suratpernyataan" class="relative cursor-pointer bg-white rounded-md no-underline">
-                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                     <div class="space-y-1 text-center">
-                                        <div class="flex text-sm text-gray-600 no-underline">
+                                        <div class="md:flex text-sm text-gray-600 no-underline">
                                             <input id="suratpernyataan" name="suratpernyataan" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
                                             <p class="pl-1">pdf or image only</p>
                                         </div>
@@ -182,9 +182,9 @@
                                     Proposal
                                 </label>
                                 <label for="proposal" class="relative cursor-pointer bg-white rounded-md no-underline">
-                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                     <div class="space-y-1 text-center">
-                                        <div class="flex text-sm text-gray-600 no-underline">
+                                        <div class="md:flex text-sm text-gray-600 no-underline">
                                             <input id="proposal" name="proposal" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
                                             <p class="pl-1">pdf or image only</p>
                                         </div>
