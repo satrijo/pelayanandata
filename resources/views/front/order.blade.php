@@ -12,7 +12,7 @@
     <div class="container mx-auto px-4">
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
 
-            <div class="bg-white dark:bg-gray-800 shadow- sm:rounded-lg px-5 py-3">
+            <div class="bg-white dark:bg-gray-800 shadow- sm:rounded-lg md:px-5 py-3">
                 <form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mx-10">
@@ -220,8 +220,8 @@
                                 <label class="block text-sm font-medium text-gray-700">
                                 Periode Permintaan Data
                                 </label>
-                                <div class="mt-1 flex rounded-md shadow-sm">
-                                    <select required name="periodedari" id="periodedari" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-none rounded-l-md sm:text-sm border-gray-300">
+                                <div class="mt-1 block md:flex rounded-md shadow-sm">
+                                    <select required name="periodedari" id="periodedari" class="focus:ring-indigo-500 focus:border-indigo-500 md:flex-1 sm:rounded-md md:rounded-none md:rounded-l-md sm:text-sm border-gray-300">
                                         <option>Dari Tahun</option>
                                         @for ($i = 2000; $i <= date('Y'); $i++)
                                             <option value="{{ $i }}"  {{ old('periodedari') == $i ? 'selected' : ''}}>Dari - {{ $i }}</option>
@@ -230,7 +230,7 @@
                                     @error('periodedari')
                                             <p class="text-sm text-red-600 pt-4">{{ $message }}</p>
                                     @enderror
-                                    <select required name="periodesampai" id="periodesampai" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-none rounded-r-md sm:text-sm border-gray-300">
+                                    <select required name="periodesampai" id="periodesampai" class="focus:ring-indigo-500 focus:border-indigo-500 md:flex-1 md:rounded-none sm:rounded-md md:rounded-r-md sm:text-sm border-gray-300">
                                         <option>Sampai Tahun</option>
                                         @for ($i = date('Y'); $i > 2010; $i--)
                                             <option value="{{ $i }}" {{ old('periodesampai') == $i ? 'selected' : ''}}>Sampai - {{ $i }}</option>
