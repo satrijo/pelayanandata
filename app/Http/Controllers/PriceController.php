@@ -10,12 +10,17 @@ class PriceController extends Controller
 {
     public $data;
 
-    public function create()
+    public function index()
     {
 
         $data = Price::orderBy('namalayanan')->paginate(6);
 
-        return view('backend.tarif', compact('data'));
+        return view('backend.tarif.tarif', compact('data'));
+    }
+
+    public function create()
+    {
+        return view('backend.tarif.tambah');
     }
 
     public function store(Request $request)
@@ -24,14 +29,14 @@ class PriceController extends Controller
 
         Price::create($data);
 
-        return back();
+        return redirect()->route('tarif');
     }
 
     public function edit($id)
     {
         $edit = Price::find($id);
 
-        return view('backend.edit-tarif', compact('edit'));
+        return view('backend.tarif.edit', compact('edit'));
     }
 
     public function update(Request $request, $id)

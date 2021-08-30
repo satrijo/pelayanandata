@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Satriyo Unggul Wicaksono">
         <meta name="description" content="Pelayanan data Penerimaan Negara Bukan Pajak mengenai data - data meteorologi maupun klimatologi yang ada di wilayah Sulawesi Tenggara">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-        <script src="{{ asset('js/app.js')}}"></script>
-        <!--Jquery-->
-        <script src="{{ asset('js/jquery.min.js')}}"></script>
-        <!--Floating WhatsApp css-->
-        <link rel="stylesheet" href="{{ asset('css/floating-wpp.css')}}">
-        <!--Floating WhatsApp javascript-->
-        <script type="text/javascript" src="{{ asset('js/floating-wpp.js')}}"></script>
-
+        <meta name="theme-color" content="#000000" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
         <title>@yield('title', 'Halaman PNBP')</title>
-
     </head>

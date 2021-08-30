@@ -49,7 +49,8 @@ Route::group(['middleware' => 'revalidate'], function()
 
 
         //Prices
-        Route::get('/tarif', [PriceController::class, 'create'])->name('tarif');
+        Route::get('/tarif', [PriceController::class, 'index'])->name('tarif');
+        Route::get('/tarif/tambah', [PriceController::class, 'create'])->name('tarif.tambah');
         Route::post('/tarif/store', [PriceController::class, 'store'])->name('tarif.store');
         Route::get('/tarif/edit/{id}', [PriceController::class, 'edit'])->name('tarif.edit');
         Route::put('/tarif/update/{id}', [PriceController::class, 'update'])->name('tarif.update');

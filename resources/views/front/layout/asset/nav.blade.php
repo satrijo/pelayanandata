@@ -1,66 +1,50 @@
-<div class="items-center">
-                        <nav class="bg-gray-50 shadow dark:bg-gray-800 mt-10 rounded-md">
-                        <div class="container px-6 py-4 mx-auto">
-                            <div class="md:flex md:items-center md:justify-between">
-                                <div class="flex items-center justify-between">
-                                    <a href="{{ url('/') }}">
-                                    <div class="flex flex-row">
-                                        <div class="w-8 overflow-hidden mr-3">
-                                            <img src="{{ asset('images/logo.svg') }}" class="object-cover w-full h-full" alt="avatar">
-                                        </div>
-                                        <div class="text-xl text-gray-700 flex flex-col">
-                                            <div class="text-base font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300">Pelayanan PNBP</div>
-                                            <div class="text-xs text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300">Stasiun Meteorologi Betoambari Baubau</div>
-                                        </div>
-                                    </div>
-                                    </a>
-                                    <!-- Mobile menu button -->
-                                    <div class="flex md:hidden">
-                                        <button type="button" class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
-                                            <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
-                                                <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-                                <div class="flex-1 md:flex md:items-center md:justify-between">
-                                    <div class="flex flex-col -mx-4 md:flex-row md:items-center md:mx-8">
-                                        <a href="{{ route('order') }}" class="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700">Permohonan Data</a>
-                                        <a href="#" class="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700">Monitoring</a>
-                                        <a href="#" class="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700">Alur</a>
-                                        <a href="#" class="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700">Kontak</a>
-                                    </div>
-
-                                    <div class="flex items-center mt-4 md:mt-0">
-                                        <button class="hidden mx-4 text-gray-600 md:block dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none" aria-label="show notifications">
-                                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15 17H20L18.5951 15.5951C18.2141 15.2141 18 14.6973 18 14.1585V11C18 8.38757 16.3304 6.16509 14 5.34142V5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5V5.34142C7.66962 6.16509 6 8.38757 6 11V14.1585C6 14.6973 5.78595 15.2141 5.40493 15.5951L4 17H9M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-
-                                        <button type="button" class="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
-                                            <div>
-                                                {{-- login button --}}
-                                                @if (Route::has('login'))
-                                                <div class="flex justify-center items-center">
-                                                @auth
-                                                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 no-underline">Dashboard</a>
-                                                    @else
-                                                        <a href="{{ route('login') }}" class="text-sm bg-blue-500 text-white py-1 px-2 rounded-lg no-underline">Masuk</a>
-                                                        @if (Route::has('register'))
-                                                            <a href="{{ route('register') }}" class="ml-2 bg-blue-400 text-white py-1 px-2 rounded-lg text-sm no-underline">Daftar</a>
-                                                        @endif
-                                                    @endauth
-                                                </div>
-                                                @endif
-                                                {{-- end login button --}}
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
+<nav class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 ">
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+        <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+            <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+                href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation">{{ config('app.name') }}</a><button
+                class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+                type="button" onclick="toggleNavbar('example-collapse-navbar')">
+                <i class="text-white fas fa-bars"></i>
+            </button>
+        </div>
+        <div class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
+            id="example-collapse-navbar">
+            <ul class="flex flex-col lg:flex-row list-none mr-auto">
+                <li class="flex items-center">
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                        href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/landing"><i
+                            class="lg:text-gray-300 text-gray-500 far fa-file-alt text-lg leading-lg mr-2"></i>
+                        Docs</a>
+                </li>
+            </ul>
+            <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+                <li class="flex items-center">
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                        href="#pablo"><i
+                            class="lg:text-gray-300 text-gray-500 fab fa-facebook text-lg leading-lg "></i><span
+                            class="lg:hidden inline-block ml-2">Share</span></a>
+                </li>
+                <li class="flex items-center">
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                        href="#pablo"><i
+                            class="lg:text-gray-300 text-gray-500 fab fa-twitter text-lg leading-lg "></i><span
+                            class="lg:hidden inline-block ml-2">Tweet</span></a>
+                </li>
+                <li class="flex items-center">
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                        href="#pablo"><i
+                            class="lg:text-gray-300 text-gray-500 fab fa-github text-lg leading-lg "></i><span
+                            class="lg:hidden inline-block ml-2">Star</span></a>
+                </li>
+                <li class="flex items-center">
+                    <button
+                        class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+                        type="button" style="transition: all 0.15s ease 0s;">
+                        <i class="fas fa-arrow-alt-circle-down"></i> Download
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

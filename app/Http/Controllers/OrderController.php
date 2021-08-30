@@ -74,7 +74,7 @@ class OrderController extends Controller
         $data = Order::where('invoice', $id)->first();
 
         $produk = $data->prices()->get();
-        return view('backend.edit-permohonan', compact('data', 'produk'));
+        return view('backend.order.edit-permohonan', compact('data', 'produk'));
     }
 
     public function update(Request $request, $id)

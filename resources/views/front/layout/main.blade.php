@@ -1,15 +1,14 @@
 @include('front.layout.asset.head')
-    <body class="bg-gray-100">
-    <div class="relative flex items-top justify-center dark:bg-gray-900 sm:items-center sm:pt-0"> {{-- min-h-screen --}}
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+    <body class="text-gray-800 antialiased">
             @include('front.layout.asset.nav')
+            <main>
             @yield('hero')
             @yield('marquee')
             @yield('content')
+            </main>
             @include('front.layout.asset.footer')
-        </div>
-    </div>
-    @include('front.layout.asset.wa')
+
+    {{-- @include('front.layout.asset.wa') --}}
     </body>
       <!--
         //////////////////////////////////////////////////////////////////////
@@ -23,4 +22,11 @@
             *Javascript
         //////////////////////////////////////////////////////////////////////
         -->
+<script>
+    function toggleNavbar(collapseID) {
+      document.getElementById(collapseID).classList.toggle("hidden");
+      document.getElementById(collapseID).classList.toggle("block");
+    }
+</script>
+
 </html>

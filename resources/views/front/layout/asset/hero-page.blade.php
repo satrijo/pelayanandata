@@ -1,25 +1,20 @@
-<div class="relative pt-16 pb-32 flex content-center items-center justify-center" style="min-height: 75vh;">
+<section class="relative block" style="height: 500px;">
     <div class="absolute top-0 w-full h-full bg-center bg-cover"
-        style='background-image: url("https://inderaja.bmkg.go.id/IMAGE/HIMA/H08_EH_Indonesia.png?id=43012fp1bn4s9cx61jvnmm3");'>
-        <span id="blackOverlay" class="w-full h-full absolute opacity-75 bg-black"></span>
+        style='background-image: url("https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80");'>
+        <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
     </div>
     <div class="container relative mx-auto">
         <div class="items-center flex flex-wrap">
-            <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+            <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center mt-24">
                 <div class="pr-12">
-                    <h1 class="text-white font-semibold text-5xl">
+                    <h1 class="text-white font-semibold sm:text-xl md:text-5xl">
                         Permohonan Data Cuaca
                     </h1>
-                    <p class="mt-4 text-lg text-gray-300 mb-5">
+                    <p class="mt-4 sm:text-base md:text-lg text-gray-300 mb-5">
                         Untuk mendukung manajemen pengguna layanan Data Online BMKG Baubau dalam rangka meningkatkan
                         layanan, pemohon dapat
                         melakukan Permohonan data cuaca melalui form aplikasi online.
                     </p>
-                    <a href="{{ route('order') }}"
-                        class=" bg-blue-200 text-gray-800 text-xs font-bold uppercase px-4 py-3 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
-                        style="transition: all 0.15s ease 0s;">
-                        Ajukan Permohonan <i class="fas fa-arrow-alt-circle-right"></i>
-                    </a>
                 </div>
             </div>
         </div>
@@ -31,4 +26,4 @@
             <polygon class="text-gray-300 fill-current" points="2560 0 2560 100 0 100"></polygon>
         </svg>
     </div>
-</div>
+</section>

@@ -8,6 +8,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}" />
     <link rel="stylesheet" href="{{ asset('/assets/css/tailwind.output.css') }}" />
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
@@ -16,22 +17,22 @@
     <script src="{{ asset('/assets/js/init-alpine.js')}}"></script>
   </head>
   <body>
-    <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+    <div class="flex items-center min-h-screen p-6 dark:bg-gray-900">
       <div
-        class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+        class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-gray-50 rounded-lg shadow-xl dark:bg-gray-800"
       >
         <div class="flex flex-col overflow-y-auto md:flex-row">
           <div class="h-32 md:h-auto md:w-1/2">
             <img
               aria-hidden="true"
               class="object-cover w-full h-full dark:hidden"
-              src="{{ asset('/assets/img/login-office.jpeg') }}"
+              src="{{ asset('/assets/img/login-office.jpg') }}"
               alt="Office"
             />
             <img
               aria-hidden="true"
               class="hidden object-cover w-full h-full dark:block"
-              src="{{ asset('/assets/img/login-office-dark.jpeg') }}"
+              src="{{ asset('/assets/img/login-office.jpg') }}"
               alt="Office"
             />
           </div>
