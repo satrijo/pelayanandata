@@ -106,7 +106,7 @@
                 <td>{{ $p->namalayanan }}</td>
                 <td align="center">{{ $p->jenislayanan }}</td>
                 <td align="center">{{ ($data->periodesampai - $data->periodedari) + 1 }} {{$p->satuan}}</td>
-                <td align="right">{{ number_format($p->tarif, 2) }}</td>
+                <td align="right">{{ number_format($p->tarif, 2,',','.') }}</td>
                 <td align="right">Rp.{{ number_format($p->tarif * (($data->periodesampai - $data->periodedari) +1), 2) }}</td>
             </tr>
         @endforeach
@@ -116,7 +116,7 @@
         <tr>
             <td colspan="4"></td>
             <td align="right">Subtotal Rp.</td>
-            <td align="right">{{ number_format($data->total,2) }}</td>
+            <td align="right">{{ number_format($data->total,2,',','.') }}</td>
         </tr>
         <tr>
             <td colspan="4"></td>
@@ -126,7 +126,7 @@
         <tr>
             <td colspan="4"></td>
             <td align="right">Total</td>
-            <td align="right" class="gray">Rp.{{ number_format($data->total,2) }}</td>
+            <td align="right" class="gray">Rp.{{ number_format($data->total,2,',','.') }}</td>
         </tr>
     </tfoot>
   </table>
@@ -139,7 +139,7 @@
         <tr>
             <td colspan="4"></td>
             <td align="center"></td>
-            <td align="center"><img src="{{url($data->qrcode)}}" width="80" /></td>
+        <td align="center"><img src="{{ config('app.url') }}/storage/qr/{{$data->invoice}}.png" width="80" /></td>
         </tr>
         <tr>
             <td colspan="4"></td>

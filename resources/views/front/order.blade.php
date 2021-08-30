@@ -256,7 +256,6 @@
                     </label>
                     <div class="mt-1 flex rounded-md shadow-sm " id="nolrupiah2" >
                         <select required name="pembayaran" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300">
-                            <option>Pilih jenis pembayaran</option>
                             <option value="transfer">Transfer</option>
                             <option value="tunai">Cash/Tunai</option>
                         </select>

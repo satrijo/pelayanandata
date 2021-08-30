@@ -10,9 +10,10 @@ use Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use DataTables;
-
+use Illuminate\Support\Facades\Storage;
 
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use File;
 
 use Illuminate\Http\Request;
 
@@ -21,31 +22,51 @@ class OrderController extends Controller
 
     public function index()
     {
-        return view('backend.order');
+        $data = Order::orderBy('id', 'DESC')->paginate(6);
+
+        return view('backend.order.order', compact('data'));
     }
 
-    public function getJson()
+    public function batal()
     {
+        $data = Order::where('status', 'Batal')->orderBy('id', 'DESC')->paginate(6);
 
-        $data = Order::with('prices')->selectRaw('distinct orders.*')->get();
+        return view('backend.order.order-batal', compact('data'));
+    }
 
-        return DataTables::of($data)
-            ->addColumn('namalayanan', function ($data) {
-                return implode(', ', $data->prices->pluck('namalayanan')->toArray());
-            })
-            ->addColumn('action', function ($data) {
-                $actionBtn = "<a href='/dashboard/permohonan/$data->invoice/edit' class='edit btn btn-success btn-sm'>Edit</a>";
-                return $actionBtn;
-            })->editColumn('created_at', function ($data) {
-                return date('l, d M Y', strtotime($data->created_at));
-            })->editColumn('jenispelayanan', function ($data) {
-                return strtoupper($data->jenispelayanan);
-            })->editColumn('pembayaran', function ($data) {
-                return ucwords($data->pembayaran);
-            })
+    public function diterima()
+    {
+        $data = Order::where('status', 'Permohonan Diterima')->orderBy('id', 'DESC')->paginate(6);
 
-            ->rawColumns(['namalayanan', 'action'])
-            ->make(true);
+        return view('backend.order.order-diterima', compact('data'));
+    }
+
+    public function menungguPembayaran()
+    {
+        $data = Order::where('status', 'Menunggu Pembayaran')->orderBy('id', 'DESC')->paginate(6);
+
+        return view('backend.order.order-menunggu-pembayaran', compact('data'));
+    }
+
+    public function diproses()
+    {
+        $data = Order::where('status', 'Diproses')->orderBy('id', 'DESC')->paginate(6);
+
+        return view('backend.order.order-diproses', compact('data'));
+    }
+
+    public function selesai()
+    {
+        $data = Order::where('status', 'Selesai')->orderBy('id', 'DESC')->paginate(6);
+
+        return view('backend.order.order-selesai', compact('data'));
+    }
+
+    public function bermasalah()
+    {
+        $data = Order::where('status', 'Permohonan Bermasalah')->orderBy('id', 'DESC')->paginate(6);
+
+        return view('backend.order.order-bermasalah', compact('data'));
     }
 
     public function edit($id)
@@ -97,6 +118,29 @@ class OrderController extends Controller
         return back();
     }
 
+    public function destroy($id)
+    {
+        $cek = Order::find($id);
+
+
+        if($cek->jenispelayanan == 'nolrupiah')
+        {
+            Storage::delete($cek->proposal);
+            Storage::delete($cek->suratpernyataan);
+            Storage::delete($cek->suratpengantar);
+        }
+
+        Storage::delete($cek->suratpermohonan);
+        Storage::delete($cek->scanktp);
+        Storage::delete($cek->qrcode);
+
+
+        Order::destroy($id);
+        return back();
+    }
+
+
+
     public function create()
     {
         $take = Price::where('status', 'aktif')->count();
@@ -128,7 +172,7 @@ class OrderController extends Controller
         $invoice = time();
 
         $qr = QrCode::format('png')->merge(url('images/logo_putih.png'), 0.25, true)->size(300)->margin(1)->errorCorrection('H')
-            ->generate(url('monitoring/' . $invoice), public_path('images/qr/' . $invoice . '.png'));
+            ->generate(url('monitoring/' . $invoice), public_path('storage/qr/' . $invoice . '.png'), public_path('images/qr/' . $invoice . '.png'));
 
         $dari = $request->periodedari;
         $sampai = $request->periodesampai;
@@ -177,14 +221,14 @@ class OrderController extends Controller
             'scanktp'           => $request->scanktp->store('public/datascanktp'),
             'suratpengantar'    => $request->suratpengantar ? $request->suratpengantar->store('public/datasuratpengantar') : null,
             'suratpernyataan'   => $request->suratpernyataan ? $request->suratpernyataan->store('public/datasuratpernyataan') : null,
-            'proposal'          => $request->proposal ? $request->proposal->store('public/datapengantar') : null,
+            'proposal'          => $request->proposal ? $request->proposal->store('public/dataproposal') : null,
             'periodedari'       => $request->periodedari,
             'periodesampai'     => $request->periodesampai,
             'keterangan'        => $request->keterangan,
             'kode'              => $request->kode,
-            'pembayaran'        => $request->jenispelayanan == "pnbp" ? $request->pembayaran : "nol rupiah",
+            'pembayaran'        => $request->jenispelayanan == "nolrupiah" ? "nol rupiah" : $request->pembayaran,
             'total'             => $total,
-            'qrcode'            => '/images/qr/' . $invoice . '.png',
+            'qrcode'            => 'public/qr/' . $invoice . '.png',
             'status'            => 'Permohonan Diterima',
         ]);
 
@@ -256,12 +300,14 @@ class OrderController extends Controller
     {
         $data = Order::where('invoice', $id)->first();
 
+        $qr = Storage::url($data->qrcode);
+
         $produk = $data->prices()->get();
 
-        $pdf = PDF::loadView('pdf.invoice', compact('data', 'produk'))->setPaper('a4', 'portrait');
-        return $pdf->download($data->invoice . '.pdf');
+        $pdf = PDF::loadView('pdf.invoice', compact('data', 'produk','qr'))->setPaper('a4', 'portrait');
+        return $pdf->stream($data->invoice . '.pdf');
 
-        // return view('pdf.invoice', compact('data', 'produk'));
+        // return view('pdf.invoice', compact('data', 'produk', 'qr'));
     }
 
     public function konfirmasi()
