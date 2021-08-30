@@ -18,7 +18,7 @@
                     <div class="mx-10">
                     <div class="md:px-4 py-5 bg-white space-y-6 sm:p-6">
                         <div class="md:grid md:grid-cols-2 gap-6 mt-8">
-                            <div class="auto-cols-max sm:mb-5 md:mb-0">
+                            <div class="auto-cols-max">
                                 <label class="block text-sm font-medium text-gray-700">
                                 Nama Lengkap
                                 </label>
@@ -26,9 +26,9 @@
                                 <input value="{{ old('nama') }}" type="text" name="nama" id="nama" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="contoh: Riyo Apriyanto" required>
                                 </div>
                             </div>
-                            <div class="auto-cols-max">
+                            <div class="auto-cols-max ">
                                 <label class="block text-sm font-medium text-gray-700">
-                                Nomor KTP (KTP)
+                                Nomor KTP (NIK)
                                 </label>
                                 <div class="mt-1 flex rounded-md shadow-sm">
                                 <input value="{{ old('nik') }}" type="number" name="nik" id="nik" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="contoh: 6603042903940002" required>
@@ -94,108 +94,135 @@
                             </div>
                         </div>
 
-                        <div class="md:grid md:grid-cols-2 gap-6">
-                            <div class="auto-cols-max sm:mb-5 md:mb-0">
-                                <label class="block text-sm font-medium text-gray-700">
-                                Surat Permohonan Instansi/Universitas
-                                </label>
-                                <label for="suratpermohonan" class="relative cursor-pointer bg-white rounded-md no-underline">
-                                <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                    <div class="space-y-1 text-center">
-                                        <div class="md:flex text-sm text-gray-600 no-underline">
-                                            <input id="suratpermohonan" name="suratpermohonan" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
-                                            <p class="pl-1">pdf or image only</p>
-                                        </div>
-                                        @error('suratpermohonan')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
+                        {{-- Start of attach file --}}
+                        <div class="md:py-5">
 
-                                    </div>
-                                </div>
-                                </label>
-                            </div>
-                            <div class="auto-cols-max">
-                                <label class="block text-sm font-medium text-gray-700">
-                                    Scan/Foto KTP
-                                </label>
-                                <label for="scanktp" class="relative cursor-pointer bg-white rounded-md no-underline">
-                                <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                    <div class="space-y-1 text-center">
-                                        <div class="flex md:text-sm text-gray-600 no-underline">
-                                            <input id="scanktp" name="scanktp" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
-                                            <p class="pl-1">pdf or image only</p>
+                            <div class="md:grid md:grid-cols-2 gap-6">
+                                <div class="auto-cols-max sm:mb-5 md:mb-0">
+                                    <label class="block text-sm font-medium text-gray-700">
+                                    Surat Permohonan Instansi/Universitas
+                                        <button
+                                            class="text-gray-700 font-extralight text-xs transition-all duration-150"
+                                            onmouseenter="openPopover(event,'popover-id')" onmouseleave="openPopover(event,'popover-id')">
+                                            (Lihat contoh)
+                                        </button>
+                                    </label>
+                                    <label for="suratpermohonan" class="relative cursor-pointer bg-white rounded-md no-underline">
+                                    <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <div class="space-y-1 text-center">
+                                            <div class="md:flex text-sm text-gray-600 no-underline">
+                                                <input id="suratpermohonan" name="suratpermohonan" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
+                                                <p class="pl-1">pdf or image only</p>
+
+                                            </div>
+                                            @error('suratpermohonan')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+
                                         </div>
-                                        @error('scanktp')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
                                     </div>
+                                    </label>
                                 </div>
-                                </label>
+                                <div class="auto-cols-max sm:mb-5 md:mb-0">
+                                    <label class="block text-sm font-medium text-gray-700">
+                                        Scan/Foto KTP
+                                        <button class="text-gray-700 font-extralight text-xs transition-all duration-150"
+                                            onmouseenter="openPopover(event,'popover-id')" onmouseleave="openPopover(event,'popover-id')">
+                                            (Lihat contoh)
+                                        </button>
+                                    </label>
+                                    <label for="scanktp" class="relative cursor-pointer bg-white rounded-md no-underline">
+                                    <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <div class="space-y-1 text-center">
+                                            <div class="md:flex md:text-sm text-gray-600 no-underline">
+                                                <input id="scanktp" name="scanktp" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
+                                                <p class="pl-1">pdf or image only</p>
+                                            </div>
+                                            @error('scanktp')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="md:grid md:grid-cols-2 gap-6 mt-5" id="ifYes"
+                                @if($errors->has('suratpengantar') || $errors->has('suratpernyataan') || $errors->has('proposal'))
+                                    style="";
+                                @else
+                                    style="display: none;
+                                @endif
+                                ">
+
+                                <div class="auto-cols-auto mt-1 sm:mb-5 md:mb-0" >
+                                    <label class="block text-sm font-medium text-gray-700">
+                                        Surat Pengantar dari Kampus / Instansi
+                                        <button class="text-gray-700 font-extralight text-xs transition-all duration-150"
+                                            onmouseenter="openPopover(event,'popover-id')" onmouseleave="openPopover(event,'popover-id')">
+                                            (Lihat contoh)
+                                        </button>
+                                    </label>
+                                    <label for="suratpengantar" class="relative cursor-pointer bg-white rounded-md no-underline">
+                                    <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <div class="space-y-1 text-center">
+                                            <div class="md:flex text-sm text-gray-600 no-underline">
+                                                <input id="suratpengantar" name="suratpengantar" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
+                                                <p class="pl-1">pdf or image only</p>
+                                            </div>
+                                            @error('suratpengantar')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    </label>
+                                </div>
+                                <div class="auto-cols-max mt-1 sm:mb-5 md:mb-0" >
+                                    <label class="block text-sm font-medium text-gray-700">
+                                        Surat Pernyataan tidak Penyalahgunaan Data
+                                        <button class="text-gray-700 font-extralight text-xs transition-all duration-150"
+                                            onmouseenter="openPopover(event,'popover-id')" onmouseleave="openPopover(event,'popover-id')">
+                                            (Lihat contoh)
+                                        </button>
+                                    </label>
+                                    <label for="suratpernyataan" class="relative cursor-pointer bg-white rounded-md no-underline">
+                                    <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <div class="space-y-1 text-center">
+                                            <div class="md:flex text-sm text-gray-600 no-underline">
+                                                <input id="suratpernyataan" name="suratpernyataan" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
+                                                <p class="pl-1">pdf or image only</p>
+                                            </div>
+                                            @error('suratpernyataan')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    </label>
+                                </div>
+                                <div class="auto-cols-max mt-1" >
+                                    <label class="block text-sm font-medium text-gray-700">
+                                        Proposal
+                                        <button class="text-gray-700 font-extralight text-xs transition-all duration-150"
+                                            onmouseenter="openPopover(event,'popover-id')" onmouseleave="openPopover(event,'popover-id')">
+                                            (Lihat contoh)
+                                        </button>
+                                    </label>
+                                    <label for="proposal" class="relative cursor-pointer bg-white rounded-md no-underline">
+                                    <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <div class="space-y-1 text-center">
+                                            <div class="md:flex text-sm text-gray-600 no-underline">
+                                                <input id="proposal" name="proposal" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
+                                                <p class="pl-1">pdf or image only</p>
+                                            </div>
+                                            @error('proposal')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <div class="md:grid md:grid-cols-2 gap-6 mt-5" id="ifYes"
-                            @if($errors->has('suratpengantar') || $errors->has('suratpernyataan') || $errors->has('proposal'))
-                                style="";
-                            @else
-                                style="display: none;
-                            @endif
-                            ">
-
-                            <div class="auto-cols-auto mt-1 sm:mb-5 md:mb-0" >
-                                <label class="block text-sm font-medium text-gray-700">
-                                    Surat Pengantar dari Kampus / Instansi
-                                </label>
-                                <label for="suratpengantar" class="relative cursor-pointer bg-white rounded-md no-underline">
-                                <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                    <div class="space-y-1 text-center">
-                                        <div class="md:flex text-sm text-gray-600 no-underline">
-                                            <input id="suratpengantar" name="suratpengantar" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
-                                            <p class="pl-1">pdf or image only</p>
-                                        </div>
-                                        @error('suratpengantar')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                                </label>
-                            </div>
-                            <div class="auto-cols-max mt-1 sm:mb-5 md:mb-0" >
-                                <label class="block text-sm font-medium text-gray-700">
-                                    Surat Pernyataan tidak Penyalahgunaan Data
-                                </label>
-                                <label for="suratpernyataan" class="relative cursor-pointer bg-white rounded-md no-underline">
-                                <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                    <div class="space-y-1 text-center">
-                                        <div class="md:flex text-sm text-gray-600 no-underline">
-                                            <input id="suratpernyataan" name="suratpernyataan" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
-                                            <p class="pl-1">pdf or image only</p>
-                                        </div>
-                                        @error('suratpernyataan')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                                </label>
-                            </div>
-                            <div class="auto-cols-max mt-1" >
-                                <label class="block text-sm font-medium text-gray-700">
-                                    Proposal
-                                </label>
-                                <label for="proposal" class="relative cursor-pointer bg-white rounded-md no-underline">
-                                <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                    <div class="space-y-1 text-center">
-                                        <div class="md:flex text-sm text-gray-600 no-underline">
-                                            <input id="proposal" name="proposal" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
-                                            <p class="pl-1">pdf or image only</p>
-                                        </div>
-                                        @error('proposal')
-                                            <p class="text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                                </label>
-                            </div>
-                        </div>
+                        {{-- End of attach file --}}
                         <div class="bg-gray-200 md:grid md:grid-cols-3 gap-6 justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                             <div class="col-span-2 sm:mb-5 md:mb-0">
                                 <label class="block text-sm font-medium text-gray-700 required" >
@@ -290,7 +317,31 @@
         </div>
     </div>
 </section>
-
+<div class="hidden bg-blueGray-600 border-0 mb-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg"
+    id="popover-id">
+    <div>
+        <div
+            class="bg-blueGray-600 text-white opacity-75 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg">
+            Informasi
+        </div>
+        <div class="text-white p-3">
+            Download di menu dokumen pendukung
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
+<script>
+    function openPopover(event,popoverID){
+        let element = event.target;
+        while(element.nodeName !== "BUTTON"){
+        element = element.parentNode;
+        }
+        var popper = Popper.createPopper(element, document.getElementById(popoverID), {
+        placement: 'top'
+        });
+        document.getElementById(popoverID).classList.toggle("hidden");
+    }
+</script>
 <script>
     function yesnoCheck(that) {
     if (that.value == "nolrupiah") {

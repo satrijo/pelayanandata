@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Price;
-use Barryvdh\DomPDF\Facade as PDF;
-use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
@@ -282,37 +280,6 @@ class OrderController extends Controller
         $id = $order->invoice;
 
         return redirect()->route('order.sukses', ['id' => $id])->withInput();
-    }
-
-    public function sukses($id)
-    {
-        $data = Order::where('invoice', $id)->first();
-
-        $emailQueue = (new \App\Jobs\SendEmailJob($id))->delay(Carbon::now()->addSeconds(10));
-        dispatch($emailQueue);
-
-        $produk = $data->prices()->get();
-
-        return view('front.sukses', compact('data', 'produk'));
-    }
-
-    public function pdf($id)
-    {
-        $data = Order::where('invoice', $id)->first();
-
-        $qr = Storage::url($data->qrcode);
-
-        $produk = $data->prices()->get();
-
-        $pdf = PDF::loadView('pdf.invoice', compact('data', 'produk','qr'))->setPaper('a4', 'portrait');
-        return $pdf->stream($data->invoice . '.pdf');
-
-        // return view('pdf.invoice', compact('data', 'produk', 'qr'));
-    }
-
-    public function konfirmasi()
-    {
-        //
     }
 
     function apiKirimWaRequest(array $params)

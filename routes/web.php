@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
 use Illuminate\Support\Facades\Auth;
@@ -19,9 +20,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', function () {
-    return view('front.home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::group(['middleware' => 'revalidate'], function()
@@ -59,9 +58,13 @@ Route::group(['middleware' => 'revalidate'], function()
 
     Route::get('/form', [OrderController::class, 'create'])->name('order');
     Route::post('/form', [OrderController::class, 'store'])->name('order.store');
-    Route::get('/monitoring/{id}', [OrderController::class, 'sukses'])->name('order.sukses');
-    Route::get('/monitoring/{id}/export', [OrderController::class, 'pdf'])->name('order.pdf');
-    Route::get('/konfirmasi', [OrderController::class, 'konfirmasi'])->name('konfirmasi');
+
+    Route::get('/monitoring', [HomeController::class, 'monitoring'])->name('monitoring');
+    Route::post('/monitoring', [HomeController::class, 'monitoringCek'])->name('monitoring.cek');
+
+    Route::get('/monitoring/{id}', [HomeController::class, 'sukses'])->name('order.sukses');
+    Route::get('/monitoring/{id}/export', [HomeController::class, 'pdf'])->name('order.pdf');
+    // Route::get('/konfirmasi', [OrderController::class, 'konfirmasi'])->name('konfirmasi');
 
 });
 

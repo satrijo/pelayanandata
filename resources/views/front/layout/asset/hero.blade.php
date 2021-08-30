@@ -1,6 +1,6 @@
 <div class="relative pt-16 pb-32 flex content-center items-center justify-center" style="min-height: 75vh;">
     <div class="absolute top-0 w-full h-full bg-top bg-cover"
-        style='background-image: url(./images/bg.gif);'>
+        style='background-image: url(/images/bg.gif);'>
         <span id="blackOverlay" class="w-full h-full absolute opacity-75 bg-black"></span>
     </div>
     <div class="container relative mx-auto">

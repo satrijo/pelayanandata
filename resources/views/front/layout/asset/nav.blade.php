@@ -12,37 +12,64 @@
             id="example-collapse-navbar">
             <ul class="flex flex-col lg:flex-row list-none mr-auto">
                 <li class="flex items-center">
-                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                        href="#"><i
-                            class="lg:text-gray-300 text-gray-500 far fa-file-alt text-lg leading-lg mr-2"></i>
-                        Docs</a>
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                        href="{{ route('order') }}">
+                        {{-- <i class="lg:text-gray-300 text-gray-500 far fa-file-alt text-lg leading-lg mr-2"></i> --}}
+                        Permohonan Data</a>
+                </li>
+                <li class="flex items-center">
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                        href="#">
+                        Pelayanan Jasa MKG</a>
+                </li>
+                <li class="flex items-center">
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                        href="{{ route('monitoring') }}">
+                        Monitoring</a>
+                </li>
+                <li class="flex items-center">
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                        href="#">
+                        Tarif Data</a>
+                </li>
+                <li class="flex items-center">
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                        href="#">
+                        Alur Permohonan</a>
+                </li>
+                <li class="flex items-center">
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                        href="#">
+                        Form Survey</a>
+                </li>
+                <li class="flex items-center">
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                        href="#">
+                        FAQ</a>
                 </li>
             </ul>
             <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
                 <li class="flex items-center">
+                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
+                        href="#">Kontak</a>
+                </li>
+                <li class="flex items-center">
                     <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                        href="#pablo"><i
-                            class="lg:text-gray-300 text-gray-500 fab fa-facebook text-lg leading-lg "></i><span
+                        href="#"><i class="lg:text-gray-300 text-gray-500 fab fa-facebook text-lg leading-lg "></i><span
                             class="lg:hidden inline-block ml-2">Share</span></a>
                 </li>
                 <li class="flex items-center">
                     <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                        href="#pablo"><i
+                        href="#"><i
                             class="lg:text-gray-300 text-gray-500 fab fa-twitter text-lg leading-lg "></i><span
                             class="lg:hidden inline-block ml-2">Tweet</span></a>
                 </li>
                 <li class="flex items-center">
-                    <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                        href="#pablo"><i
-                            class="lg:text-gray-300 text-gray-500 fab fa-github text-lg leading-lg "></i><span
-                            class="lg:hidden inline-block ml-2">Star</span></a>
-                </li>
-                <li class="flex items-center">
-                    <button
+                    <a href="https://drive.google.com/file/d/1xVo1OZ-E6jOSjKEUtCW3PTDcYk6mQ7wn/view?usp=sharing"
                         class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
-                        type="button" style="transition: all 0.15s ease 0s;">
-                        <i class="fas fa-arrow-alt-circle-down"></i> Download
-                    </button>
+                        style="transition: all 0.15s ease 0s;">
+                        <i class="fas fa-arrow-alt-circle-down"></i> Dokumen Pendukung
+                    </a>
                 </li>
             </ul>
         </div>
