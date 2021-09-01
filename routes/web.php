@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 
 /*
@@ -64,7 +63,10 @@ Route::group(['middleware' => 'revalidate'], function()
 
     Route::get('/monitoring/{id}', [HomeController::class, 'sukses'])->name('order.sukses');
     Route::get('/monitoring/{id}/export', [HomeController::class, 'pdf'])->name('order.pdf');
-    // Route::get('/konfirmasi', [OrderController::class, 'konfirmasi'])->name('konfirmasi');
+
+    Route::get('/konfirmasi', [ConfirmationController::class, 'index'])->name('konfirmasi');
+    Route::post('/konfirmasi', [ConfirmationController::class, 'store'])->name('konfirmasi.store');
+
 
 });
 

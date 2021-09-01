@@ -134,7 +134,7 @@
                                     <label for="scanktp" class="relative cursor-pointer bg-white rounded-md no-underline">
                                     <div class="mt-1 md:flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                         <div class="space-y-1 text-center">
-                                            <div class="md:flex md:text-sm text-gray-600 no-underline">
+                                            <div class="md:flex text-sm text-gray-600 no-underline">
                                                 <input id="scanktp" name="scanktp" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
                                                 <p class="pl-1">pdf or image only</p>
                                             </div>
