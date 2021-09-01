@@ -44,7 +44,7 @@ class HomeController extends Controller
     {
         $data = Order::where('invoice', $id)->first();
 
-        $qr = Storage::url($data->qrcode);
+        $qr = $data->qrcode;
 
         $produk = $data->prices()->get();
 

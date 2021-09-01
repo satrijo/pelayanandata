@@ -84,10 +84,11 @@ class OrderController extends Controller
         $request->data = is_null($request->data) ? $data->data : $request->data->store('public/dataselesai');
 
 
-        $pesan = "*Hallo $data->nama* \n```Status Permohonan Data Cuaca: $request->status``` \n\n```Note: $request->infoadmin```\n********* \n\nNo. invoice anda: $data->invoice \nSilahkan cek di http://ptsp.meteobaubau.com/monitoring/$data->invoice untuk info lebih lanjut." . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin: 08114037700::";
+        $pesan = "*Hallo $data->nama* \n```Status Permohonan Data Cuaca: $request->status``` \n\n```Note: $request->infoadmin```\n********* \n\nNo. invoice anda: $data->invoice \nSilahkan cek di https://ptsp.meteobaubau.com/monitoring/".$data->invoice. " untuk info lebih lanjut." . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin: 08114037700::";
 
+        // $pesan = 'test update';
         try {
-            $baseApiUrl = getenv('API_BASEURL') ? getenv('API_BASEURL') : 'https://api.kirimwa.id/v1';
+            $baseApiUrl = 'https://api.kirimwa.id/v1';
             $reqParams = [
                 'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
                 'url' => $baseApiUrl . '/messages',
@@ -102,6 +103,7 @@ class OrderController extends Controller
 
             $response = $this->apiKirimWaRequest($reqParams);
             // echo $response['body'];
+            // dd($response['body']);
         } catch (\Exception $e) {
             print_r($e);
         }
@@ -170,7 +172,7 @@ class OrderController extends Controller
         $invoice = time();
 
         $qr = QrCode::format('png')->merge(url('images/logo_putih.png'), 0.25, true)->size(300)->margin(1)->errorCorrection('H')
-            ->generate(url('monitoring/' . $invoice), public_path('storage/qr/' . $invoice . '.png'), public_path('images/qr/' . $invoice . '.png'));
+            ->generate(url('monitoring/' . $invoice), public_path('images/qr/' . $invoice . '.png'));
 
         $dari = $request->periodedari;
         $sampai = $request->periodesampai;
@@ -226,7 +228,7 @@ class OrderController extends Controller
             'kode'              => $request->kode,
             'pembayaran'        => $request->jenispelayanan == "nolrupiah" ? "nol rupiah" : $request->pembayaran,
             'total'             => $total,
-            'qrcode'            => 'public/qr/' . $invoice . '.png',
+            'qrcode'            => 'images/qr/' . $invoice . '.png',
             'status'            => 'Permohonan Diterima',
         ]);
 

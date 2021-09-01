@@ -139,7 +139,7 @@
         <tr>
             <td colspan="4"></td>
             <td align="center"></td>
-        <td align="center"><img src="{{ config('app.url') }}/storage/qr/{{$data->invoice}}.png" width="80" /></td>
+        <td align="center"><img src="{{$data->qrcode}}" width="80" /></td>
         </tr>
         <tr>
             <td colspan="4"></td>

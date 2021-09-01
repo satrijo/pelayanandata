@@ -124,7 +124,7 @@ Monitoring:  {{ $data->status }}
                             </table>
                             </div>
                             <div class="md:flex pl-4 mt-4 lg:w-2/3 w-2/3 mx-auto justify-between">
-                                <img src="{{Storage::url($data->qrcode)}}" class="object-scale-down h-28 sm:mt-10 md:mt-0" />
+                                <img src="{{ url($data->qrcode)}}" class="object-scale-down h-28 sm:mt-10 md:mt-0" />
                             <div class="block mb-20 sm:mt-10 md:mt-0">
                                 <div class="flex justify-between gap-6 border-t-2 border-gray-300">
                                     <p class="leading-relaxed text-lg text-left">Subtotal: </p>
