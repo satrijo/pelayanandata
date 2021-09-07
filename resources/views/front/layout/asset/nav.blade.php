@@ -34,7 +34,7 @@
                 </li>
                 <li class="flex items-center">
                     <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
-                        href="#">
+                        href="{{ route('workflow') }}">
                         Alur Permohonan</a>
                 </li>
                 <li class="flex items-center">

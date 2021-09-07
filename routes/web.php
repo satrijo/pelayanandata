@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\WorkflowController;
+use App\Models\Workflow;
 use Illuminate\Support\Facades\Route;
 
 
@@ -53,6 +55,14 @@ Route::group(['middleware' => 'revalidate'], function()
         Route::get('/tarif/edit/{id}', [PriceController::class, 'edit'])->name('tarif.edit');
         Route::put('/tarif/update/{id}', [PriceController::class, 'update'])->name('tarif.update');
         Route::delete('/tarif/delete/{id}', [PriceController::class, 'delete'])->name('tarif.delete');
+
+        //Confirmation
+        Route::get('/konfirmasi', [ConfirmationController::class, 'tabel'])->name('konfirmasi.tabel');
+
+        //workflow
+        Route::get('/workflow', [WorkflowController::class, 'edit'])->name('workflow.edit');
+        Route::put('/workflow/update/{id}', [WorkflowController::class, 'update'])->name('workflow.update');
+        Route::post('/workflow/upload', [WorkflowController::class, 'upload'])->name('ckeditor.image-upload');
     });
 
     Route::get('/form', [OrderController::class, 'create'])->name('order');
@@ -66,6 +76,9 @@ Route::group(['middleware' => 'revalidate'], function()
 
     Route::get('/konfirmasi', [ConfirmationController::class, 'index'])->name('konfirmasi');
     Route::post('/konfirmasi', [ConfirmationController::class, 'store'])->name('konfirmasi.store');
+
+    Route::get('/workflow', [WorkflowController::class, 'index'])->name('workflow');
+
 
 
 });
