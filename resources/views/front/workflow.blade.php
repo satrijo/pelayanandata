@@ -16,7 +16,7 @@ Alur Permohonan Data
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
             <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg p-10 md:px-10 py-10">
 
-                <div class="flex items-center justify-center">
+                <div class="block items-center justify-center space-y-5 gap-5">
                     {!! $data->value !!}
                 </div>
 

@@ -5,7 +5,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\WorkflowController;
+use App\Models\Question;
 use App\Models\Workflow;
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +65,15 @@ Route::group(['middleware' => 'revalidate'], function()
         Route::get('/workflow', [WorkflowController::class, 'edit'])->name('workflow.edit');
         Route::put('/workflow/update/{id}', [WorkflowController::class, 'update'])->name('workflow.update');
         Route::post('/workflow/upload', [WorkflowController::class, 'upload'])->name('ckeditor.image-upload');
+
+        //faq
+        Route::get('/faq', [QuestionController::class, 'index'])->name('faq');
+        Route::get('/faq/tambah', [QuestionController::class, 'create'])->name('faq.add');
+        Route::post('/faq/store', [QuestionController::class, 'store'])->name('faq.store');
+
+        Route::get('/faq/edit/{id}', [QuestionController::class, 'edit'])->name('faq.edit');
+        Route::put('/faq/update/{id}', [QuestionController::class, 'update'])->name('faq.update');
+        Route::delete('/faq/destroy/{id}', [QuestionController::class, 'destroy'])->name('faq.destroy');
     });
 
     Route::get('/form', [OrderController::class, 'create'])->name('order');
@@ -77,9 +88,9 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('/konfirmasi', [ConfirmationController::class, 'index'])->name('konfirmasi');
     Route::post('/konfirmasi', [ConfirmationController::class, 'store'])->name('konfirmasi.store');
 
-    Route::get('/workflow', [WorkflowController::class, 'index'])->name('workflow');
+    Route::get('/alur-permohonan', [WorkflowController::class, 'index'])->name('workflow');
 
-
+    Route::get('/faq', [QuestionController::class, 'show'])->name('faq.show');
 
 });
 

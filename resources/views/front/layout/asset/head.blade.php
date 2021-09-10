@@ -11,4 +11,6 @@
         <link rel="stylesheet"
             href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
         <title>@yield('title', 'Halaman PNBP')</title>
+
+        @stack('assets')
     </head>
