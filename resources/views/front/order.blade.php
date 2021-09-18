@@ -19,9 +19,11 @@
             @foreach ($category as $cat)
                 if (that.value == "{{ $cat->id }}") {
                 document.getElementById("{{ $cat->id }}").style = " ";
+                document.getElementById("{{ $cat->id . $cat->waktu }}").style = " ";
 
                 } else {
                 document.getElementById("{{ $cat->id }}").style.display = "none";
+                document.getElementById("{{ $cat->id . $cat->waktu }}").style.display = "none";
                 document.getElementById("{{ $cat->id }}").checked = false;
 
                 }
@@ -272,9 +274,9 @@
 
 
 
-                        <div class="bg-gray-200 md:grid md:grid-cols-4 gap-6 justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                        <div class="bg-gray-100 md:grid md:grid-cols-4 gap-6 justify-center px-6 pt-5 pb-6 border-2 border-gray-200 border-dashed rounded-md">
                             @foreach ($category as $cat )
-                                <div class="col-span-3 sm:mb-5 md:mb-0" id="{{ $cat->id }}" style="display: none;">
+                                <div class="col-span-2 sm:mb-5 md:mb-0" id="{{ $cat->id }}" style="display: none;">
                                     <label class="block text-sm font-medium text-gray-700 required">
                                         {{ $cat->nama }}
                                     </label>
@@ -296,8 +298,11 @@
                                     </div>
                                 </div>
 
-                                <div class="auto-cols-max sm:mb-5 md:mb-0" id="{{ $cat->id }}" style="display: none;">
+                                <div class="col-span-2 sm:mb-5 md:mb-0" id="{{ $cat->id . $cat->waktu }}" style="display: none;">
                                     <label class="block text-sm font-medium text-gray-700 required">
+                                        Deskripsi
+                                    </label>
+                                    <label class="block text-sm font-mono text-gray-700 required">
                                         {{ $cat->deskripsi }}
                                     </label>
                                 </div>
