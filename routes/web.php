@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -7,8 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\WorkflowController;
-use App\Models\Question;
-use App\Models\Workflow;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -57,6 +57,11 @@ Route::group(['middleware' => 'revalidate'], function()
         Route::get('/tarif/edit/{id}', [PriceController::class, 'edit'])->name('tarif.edit');
         Route::put('/tarif/update/{id}', [PriceController::class, 'update'])->name('tarif.update');
         Route::delete('/tarif/delete/{id}', [PriceController::class, 'delete'])->name('tarif.delete');
+
+        //Category Prices
+        Route::get('/category', [CategoryController::class, 'index'])->name('category');
+        Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 
         //Confirmation
         Route::get('/konfirmasi', [ConfirmationController::class, 'tabel'])->name('konfirmasi.tabel');

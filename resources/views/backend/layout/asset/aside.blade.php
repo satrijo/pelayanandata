@@ -135,6 +135,18 @@
                                 Tambah tarif
                             </a>
                         </li>
+                        <li
+                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @if (request()->routeIs('category')) dark:text-gray-100  @endif">
+                            <a class="w-full" href="{{ route('category') }}">
+                                List Category
+                            </a>
+                        </li>
+                        <li
+                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @if (request()->routeIs('category.create')) dark:text-gray-100  @endif">
+                            <a class="w-full" href="{{ route('category.create') }}">
+                                Tambah Category
+                            </a>
+                        </li>
                     </ul>
                 </template>
             </li>
@@ -320,6 +332,16 @@
                         <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="{{ route('tarif.tambah') }}">
                                 Tambah tarif
+                            </a>
+                        </li>
+                        <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            <a class="w-full" href="{{ route('category') }}">
+                                List Category
+                            </a>
+                        </li>
+                        <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            <a class="w-full" href="{{ route('category.create') }}">
+                                Tambah Category
                             </a>
                         </li>
                     </ul>

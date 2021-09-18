@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Price;
 
 use Illuminate\Http\Request;
@@ -20,14 +21,24 @@ class PriceController extends Controller
 
     public function create()
     {
-        return view('backend.tarif.tambah');
+        $data = Category::all();
+        return view('backend.tarif.tambah', compact('data'));
     }
 
     public function store(Request $request)
     {
-        $data = $request->all();
+        $id = $request->category_id;
+        $category = Category::find($id);
 
-        Price::create($data);
+        $data = new Price;
+        $data->namalayanan = $request->namalayanan;
+        $data->jenislayanan = $category->nama;
+        $data->tarif = $request->tarif;
+        $data->category_id = $id;
+        $data->satuan = $category->waktu;
+        $data->status = $request->status;
+        $data->save();
+
 
         return redirect()->route('tarif');
     }

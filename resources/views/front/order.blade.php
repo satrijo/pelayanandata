@@ -7,6 +7,31 @@
     @include('front.layout.asset.hero-page')
 @endsection
 
+@push('assets')
+        <style>
+            .fixtures {
+            display:none;
+            }
+        </style>
+
+        <script>
+            function ok(that) {
+            @foreach ($category as $cat)
+                if (that.value == "{{ $cat->waktu }}") {
+                document.getElementById("{{ $cat->waktu }}").style = " ";
+
+                } else {
+                document.getElementById("{{ $cat->waktu }}").style.display = "none";
+                document.getElementById("{{ $cat->id }}").checked = false;
+
+                }
+            @endforeach
+
+
+            }
+        </script>
+@endpush
+
 @section('content')
 <section class="relative py-16 bg-gray-300">
     <div class="container mx-auto md:px-4">
@@ -85,14 +110,34 @@
                             </div>
                         </div>
 
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">
-                                Alamat
-                            </label>
-                            <div class="mt-1">
-                                <textarea required id="alamat" name="alamat" rows="2" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Jl. Macan Raya No. 19 Kelurahan Cipete, Kecamatan Karang Nangka">{{ old('alamat') }}</textarea>
+                        <div class="md:grid md:grid-cols-2 gap-6">
+                            <div class="auto-cols-max">
+                                <label class="block text-sm font-medium text-gray-700">
+                                    Alamat
+                                </label>
+                                <div class="mt-1">
+                                    <textarea required id="alamat" name="alamat" rows="2"
+                                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                                        placeholder="Jl. Macan Raya No. 19 Kelurahan Cipete, Kecamatan Karang Nangka">{{ old('alamat') }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="auto-cols-max">
+                                <label class="block text-sm font-medium text-gray-700">
+                                    Kategori Permohonan
+                                </label>
+                                <div class="mt-1 flex rounded-md shadow-sm">
+                                    <select onchange="ok(this);" name="category" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
+                                        <option value="hari">Pilih Category</option>
+                                        @foreach ($category as $cat)
+                                            <option value="{{ $cat->waktu }}">{{ $cat->nama }}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
                             </div>
                         </div>
+
 
                         {{-- Start of attach file --}}
                         <div class="md:py-5">
@@ -223,63 +268,109 @@
                             </div>
                         </div>
                         {{-- End of attach file --}}
-                        <div class="bg-gray-200 md:grid md:grid-cols-3 gap-6 justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                            <div class="col-span-2 sm:mb-5 md:mb-0">
-                                <label class="block text-sm font-medium text-gray-700 required" >
-                                Parameter Cuaca
-                                </label>
-                                <div class="justify-center">
-                                    <div class="mt-2 overflow-auto h-28">
-                                        @foreach ($harga as $nilai )
-                                        <label class="block items-center mr-3 pl-4">
-                                            <input type="checkbox" name="parametercuaca[]" value="{{$nilai->id}}">
-                                            <span class="ml-2">{{$nilai->namalayanan}} - Rp.{{number_format($nilai->tarif,2,',','.')}} per {{ $nilai->satuan }}</span>
-                                        </label>
-                                        @endforeach
-                                    </div>
-                                    @error('parametercuaca')
-                                            <p class="text-sm text-red-600 pt-4">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
 
-                            <div class="auto-cols-max sm:mb-5 md:mb-0">
+
+
+
+                        <div class="bg-gray-200 md:grid md:grid-cols-4 gap-6 justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                            @foreach ($category as $cat )
+                                <div class="col-span-3 sm:mb-5 md:mb-0" id="{{ $cat->waktu }}" style="display: none;">
+                                    <label class="block text-sm font-medium text-gray-700 required">
+                                        {{ $cat->nama }}
+                                    </label>
+                                    <div class="justify-center">
+                                        <div class="mt-2 overflow-auto h-28">
+                                            @foreach ($cat->prices as $nilai )
+                                            @if ($nilai)
+                                                <label class="block items-center mr-3 pl-4">
+                                                    <input type="checkbox" name="parametercuaca[]" value="{{$nilai->id}}" id="{{$cat->id}}">
+                                                    <span class="ml-2">{{$nilai->namalayanan}} - Rp.{{number_format($nilai->tarif,2,',','.')}}
+                                                        {{ $nilai->category->satuan }} / {{ $nilai->category->waktu }}</span>
+                                                </label>
+                                            @endif
+                                            @endforeach
+                                        </div>
+                                        @error('parametercuaca')
+                                        <p class="text-sm text-red-600 pt-4">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            @endforeach
+
+                            {{-- @foreach ($category as $cat)
+                                <div class="col-span-2 sm:mb-5 md:mb-0" id="{{ $cat->waktu }}" style="display: none;">
+                                    <label class="block text-sm font-medium text-gray-700 required">
+                                        Nama
+                                    </label>
+                                </div>
+                            @endforeach --}}
+
+
+
+
+
+                            <div class="col-span-2 sm:mb-5 md:mb-0">
                                 <label class="block text-sm font-medium text-gray-700">
                                 Periode Permintaan Data
                                 </label>
                                 <div class="mt-1 block md:flex rounded-md shadow-sm">
-                                    <select required name="periodedari" id="periodedari" class="focus:ring-indigo-500 focus:border-indigo-500 md:flex-1 sm:rounded-md md:rounded-none md:rounded-l-md sm:text-sm border-gray-300">
-                                        <option>Dari Tahun</option>
+                                    {{-- <select required name="periodedari" id="periodedari" class="focus:ring-indigo-500 focus:border-indigo-500 md:flex-1 sm:rounded-md md:rounded-none md:rounded-l-md sm:text-sm border-gray-300">
                                         @for ($i = 2000; $i <= date('Y'); $i++)
                                             <option value="{{ $i }}"  {{ old('periodedari') == $i ? 'selected' : ''}}>Dari - {{ $i }}</option>
                                         @endfor
-                                    </select>
+                                    </select> --}}
+                                    <span
+                                        class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                        Dari
+                                    </span>
+                                    <input required placeholder="contoh: 15/03/2020" type="text" name="periodedari" class="focus:ring-indigo-500 focus:border-indigo-500 md:flex-1 sm:rounded-md md:rounded-none md:rounded-l-md sm:text-sm border-gray-300">
                                     @error('periodedari')
                                             <p class="text-sm text-red-600 pt-4">{{ $message }}</p>
                                     @enderror
-                                    <select required name="periodesampai" id="periodesampai" class="focus:ring-indigo-500 focus:border-indigo-500 md:flex-1 md:rounded-none sm:rounded-md md:rounded-r-md sm:text-sm border-gray-300">
-                                        <option>Sampai Tahun</option>
+                                    {{-- <select required name="periodesampai" id="periodesampai" class="focus:ring-indigo-500 focus:border-indigo-500 md:flex-1 md:rounded-none sm:rounded-md md:rounded-r-md sm:text-sm border-gray-300">
                                         @for ($i = date('Y'); $i > 2010; $i--)
                                             <option value="{{ $i }}" {{ old('periodesampai') == $i ? 'selected' : ''}}>Sampai - {{ $i }}</option>
                                         @endfor
-                                    </select>
+                                    </select> --}}
+                                    <span
+                                        class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                        Sampai
+                                    </span>
+                                    <input required placeholder="contoh: 21/03/2020" type="text" name="periodesampai"
+                                        class="focus:ring-indigo-500 focus:border-indigo-500 md:flex-1 sm:rounded-md md:rounded-none md:rounded-l-md sm:text-sm border-gray-300">
                                     @error('periodesampai')
                                             <p class="text-sm text-red-600 pt-4">{{ $message }}</p>
                                     @enderror
                                 </div>
 
-                                <label class="block text-sm font-medium text-gray-700 pt-3" id="nolrupiah" >
-                                Pembayaran
+
+                            </div>
+
+                            <div class="col-span-1">
+                                <label class="block text-sm font-medium text-gray-700" id="nolrupiah">
+                                    Pembayaran
                                 </label>
-                                <div class="mt-1 flex rounded-md shadow-sm " id="nolrupiah2" >
-                                    <select required name="pembayaran" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300">
+                                <div class="mt-1 flex rounded-md shadow-sm " id="nolrupiah2">
+                                    <select required name="pembayaran"
+                                        class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300">
                                         <option value="transfer">Transfer</option>
                                         <option value="tunai">Cash/Tunai</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-span-2 sm:mb-5 md:mb-0">
+                            <div class="col-span-1">
+                                <label class="block text-sm font-medium text-gray-700">
+                                    Kode
+                                </label>
+                                <div class="mt-1 flex rounded-md shadow-sm">
+                                    <input disabled type="text" name="kode" id="kode"
+                                        class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300"
+                                        placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-span-3 sm:mb-5 md:mb-0">
                                 <label class="block text-sm font-medium text-gray-700">
                                     Keterangan
                                 </label>
@@ -288,14 +379,7 @@
                                 </div>
                             </div>
 
-                            <div class="auto-cols-max">
-                                <label class="block text-sm font-medium text-gray-700">
-                                Kode
-                                </label>
-                                <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="kode" id="kode" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300" placeholder="-">
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 justify-between md:flex items-center mb-10">
@@ -317,7 +401,7 @@
         </div>
     </div>
 </section>
-<div class="hidden bg-blueGray-600 border-0 mb-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg"
+<div class="hidden bg-blueGray-600 border-0 mb-3 z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg"
     id="popover-id">
     <div>
         <div
@@ -354,9 +438,14 @@
         document.getElementById("ifYes").style.display = "none";
         document.getElementById("nolrupiah").style = " ";
         document.getElementById("nolrupiah2").style = " ";
-
+    }
 
     }
-}
 </script>
+
+
+
+
+
+
 @endsection

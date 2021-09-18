@@ -1,7 +1,7 @@
 @extends('backend.layout.main')
 
-@section("title", "Tambah Tarif")
-@section("judul", "Tambah Tarif")
+@section("title", "Tambah Category")
+@section("judul", "Tambah Category")
 
 @section('content')
 
@@ -9,33 +9,48 @@
     <div class="w-full overflow-x-auto">
 
         <section class="max-w-full p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-            <form action="{{ route('tarif.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2">
                     <div>
-                        <label class="text-gray-700 dark:text-gray-200" for="namalayanan">Nama Layanan</label>
-                        <input required placeholder="Angin / Angin Maksimum / Angin Minimum. dsb" name="namalayanan"
+                        <label class="text-gray-700 dark:text-gray-200" for="namalayanan">Nama Category</label>
+                        <input required name="nama"
                             type="text"
                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
 
                     <div>
-                        <label class="text-gray-700 dark:text-gray-200" for="jenislayanan">Category</label>
-                        <select name="category_id" type="text"
+                        <label class="text-gray-700 dark:text-gray-200" for="jenislayanan">Satuan</label>
+                        <select name="satuan"
                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                            @foreach ($data as $d )
-
-                            <option value="{{ $d->id }}">{{ $d->nama }}</option>
-
+                            @foreach ($satuan as $s )
+                                <option value="{{ $s }}">{{ $s }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div>
-                        <label class="text-gray-700 dark:text-gray-200" for="tarif">Tarif</label>
-                        <input required placeholder="Tanpa rupiah dan desimal, contoh: 60000" name="tarif" type="text"
+                        <label class="text-gray-700 dark:text-gray-200" for="tarif">Waktu</label>
+                        <select name="waktu"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                            @foreach ($waktu as $w )
+                                <option value="{{ $w }}">{{ ucfirst($w) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="text-gray-700 dark:text-gray-200" for="satuan">Deskripsi</label>
+                        <input required name="deskripsi" type="text"
                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
+
+                    {{-- <div>
+                        <label class="text-gray-700 dark:text-gray-200" for="satuan">Cover</label>
+                        <input required name="satuan" type="text"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div> --}}
+
                     <div>
                         <label class="text-gray-700 dark:text-gray-200" for="satuan">Status</label>
                         <select name="status" id="status"

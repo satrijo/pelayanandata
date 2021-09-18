@@ -68,8 +68,7 @@
                                                 class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300"
                                                 placeholder="Pesan untuk pemohon (isi jika ada)">
                                         </li>
-                                        <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm" id="ifYes" @if ($data->
-                                            status !== "Selesai")
+                                        <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm" id="ifYes" @if ($data->status !== "Selesai")
                                             style="display: none;">
                                             @endif
 
@@ -82,7 +81,7 @@
                                     </ul>
                                 </dd>
                             </div>
-                            <div class="ml-6" id="buka" style="display: none">
+                            <div class="bg-gray-200 pl-6" id="buka" @if (($data->status !== "Diproses") || ($data->status !== "Selesai")) style="display: none" @endif>
                                 <dt class="text-sm font-medium text-gray-800 ml-5">
                                     Petugas Forecast
                                 </dt>

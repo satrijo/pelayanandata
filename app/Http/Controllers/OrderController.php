@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Price;
 use Session;
@@ -143,10 +144,11 @@ class OrderController extends Controller
 
     public function create()
     {
+        $category = Category::all();
         $take = Price::where('status', 'aktif')->count();
         $harga = Price::where('status', 'aktif')->orderBy('namalayanan')->get();
 
-        return view('front.order', compact('harga'));
+        return view('front.order', compact('harga', 'category'));
     }
 
     public function store(Request $request)
@@ -175,8 +177,36 @@ class OrderController extends Controller
             ->generate(url('monitoring/' . $invoice), public_path('images/qr/' . $invoice . '.png'));
 
         $dari = $request->periodedari;
+        $dateDari = str_replace('/', '-', $dari);
+
         $sampai = $request->periodesampai;
-        $periode = ($sampai - $dari) + 1;
+        $dateSampai = str_replace('/', '-', $sampai);
+
+        if($request->category == "hari"){
+            $from =  strtotime($dateDari);
+            $till=   strtotime($dateSampai);
+            $hasil= $till - $from;
+            $periode = ($hasil / (60 * 60 * 24) + 1);
+
+        } else if ($request->category == "tahun") {
+            $from =  strtotime($dateDari);
+            $fromDate = idate('Y', $from);
+
+
+            $till =   strtotime($dateSampai);
+            $tillDate = idate('Y', $till);
+
+
+            $hasil = $tillDate - $fromDate;
+            $periode = ($hasil + 1);
+
+            dd($periode);
+        } else {
+            $periode = 1;
+        }
+
+        // dd(date('Y-m-d', strtotime($dateDari)));
+
 
         $parameter = $request->parametercuaca;
 

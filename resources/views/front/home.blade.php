@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </a>
-            <div class="pt-6 w-full md:w-4/12 px-4 text-center">
+            <a href="{{ route('faq.show') }}" class="pt-6 w-full md:w-4/12 px-4 text-center">
                 <div class="relative flex flex-col min-w-0 break-words bg-white hover:bg-red-200 w-full mb-8 shadow-lg rounded-lg">
                     <div class="px-4 py-5 flex-auto">
                         <div
@@ -57,7 +57,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </section>

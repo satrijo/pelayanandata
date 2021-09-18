@@ -1,7 +1,7 @@
 @extends('backend.layout.main')
 
-@section('title', 'Tarif')
-@section('judul', 'List Data Tarif')
+@section('title', 'Category')
+@section('judul', 'List Category')
 
 @section('content')
 
@@ -11,9 +11,10 @@
             <thead>
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                    <th class="px-4 py-3">Produk</th>
-                    <th class="px-4 py-3">Tarif</th>
+                    <th class="px-4 py-3">Category</th>
+                    <th class="px-4 py-3">Deskripsi</th>
                     <th class="px-4 py-3">Satuan</th>
+                    <th class="px-4 py-3">Waktu</th>
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3">Actions</th>
                 </tr>
@@ -31,26 +32,28 @@
                                 <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                             </div> --}}
                             <div>
-                                <p class="font-semibold">{{ $d->namalayanan }}</p>
-                                <p class="text-xs text-gray-600 dark:text-gray-400">
-                                    {{ $d->jenislayanan }}
-                                </p>
+                                <p class="font-semibold">{{ $d->nama }}</p>
                             </div>
                         </div>
                     </td>
-                    <td class="px-4 py-3 text-sm">
-                        Rp.{{ number_format($d->tarif,2, ',','.') }}
+                    <td class="px-4 py-3 w-8 text-sm">
+                        {{ Str::words($d->deskripsi, 5) }}
                     </td>
                     <td class="px-4 py-3 text-xs">
-                         {{ $d->satuan }}
+                        {{ $d->satuan }}
+                    </td>
+                    <td class="px-4 py-3 text-xs">
+                        {{ ucfirst($d->waktu) }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if ($d->status == "aktif")
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-300 text-green-800">
+                        <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-300 text-green-800">
                             Aktif
                         </span>
                         @else
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                        <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                             Non Aktif
                         </span>
                         @endif
@@ -58,8 +61,7 @@
                     </td>
                     <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
-                            <a
-                                class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                            <a class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                 aria-label="Edit" href="{{ route('tarif.edit', ['id' => $d->id]) }}">
                                 <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                     <path
@@ -68,9 +70,10 @@
                                 </svg>
                             </a>
                             {{-- <form method="POST" action="{{ route('tarif.destroy', ['id' => $d->id]) }}">
-                                @csrf
-                                @method('delete')
-                            <button type="submit" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"
+                            @csrf
+                            @method('delete')
+                            <button type="submit"
+                                onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"
                                 class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                 aria-label="Delete">
                                 <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
