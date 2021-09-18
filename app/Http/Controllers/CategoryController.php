@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $satuan  =   ['Per Lokasi', 'Per Buku', 'Per Peta'];
+        $satuan  =   ['Per Lokasi', 'Per Buku', 'Per Peta', 'Per Rute'];
         $waktu   =   ['hari', 'tahun', 'series'];
         return view('backend.category.create', compact('satuan', 'waktu'));
     }
@@ -60,9 +60,13 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $satuan  =   ['Per Lokasi', 'Per Buku', 'Per Peta', 'Per Rute'];
+        $waktu   =   ['hari', 'tahun', 'series'];
+
+        $edit = Category::find($id);
+        return view('backend.category.edit', compact('edit', 'satuan', 'waktu'));
     }
 
     /**
@@ -72,9 +76,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Category::find($id)->update($request->all());
+
+        return redirect()->route('category');
     }
 
     /**
