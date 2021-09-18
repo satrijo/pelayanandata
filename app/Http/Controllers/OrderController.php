@@ -154,11 +154,11 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $jenisPelayanan = $request->jenispelayanan;
-        $validasiNolRupiah = $jenisPelayanan == 'nolrupiah' ? 'required|mimes:jpg,bmp,png,doc,docx,pdf' : 'nullable|mimes:jpg,bmp,png,doc,docx,pdf';
+        $validasiNolRupiah = $jenisPelayanan == 'nolrupiah' ? 'required|mimes:jpg,bmp,png,doc,docx,pdf|max:1500' : 'nullable|mimes:jpg,bmp,png,doc,docx,pdf|max:1500';
 
         $validated = $request->validate([
-            'suratpermohonan'   => 'required|mimes:jpg,bmp,png,doc,docx,pdf',
-            'scanktp'           => 'required|mimes:jpg,bmp,png,doc,docx,pdf',
+            'suratpermohonan'   => 'required|mimes:jpg,bmp,png,doc,docx,pdf|max:1500',
+            'scanktp'           => 'required|mimes:jpg,bmp,png,doc,docx,pdf|max:1500',
             'suratpengantar'    =>  $validasiNolRupiah,
             'suratpernyataan'   =>  $validasiNolRupiah,
             'proposal'          =>  $validasiNolRupiah,
@@ -273,7 +273,7 @@ class OrderController extends Controller
                 'url' => $baseApiUrl . '/messages',
                 'method' => 'POST',
                 'payload' => json_encode([
-                    'message' => 'https://www.androidfreeware.net/img2/com-app-testpiwikapp.jpg',
+                    'message' => 'https://ptsp.joglohub.com/images/qr' . $invoice . '.png',
                     'phone_number' => $hp,
                     'message_type' => 'image',
                     'device_id' => 'redminote',

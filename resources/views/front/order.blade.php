@@ -157,7 +157,7 @@
                                         <div class="space-y-1 text-center">
                                             <div class="md:flex text-sm text-gray-600 no-underline">
                                                 <input id="suratpermohonan" name="suratpermohonan" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
-                                                <p class="pl-1">pdf or image only</p>
+                                                <p class="pl-1">pdf only (Max 1500Kb)</p>
 
                                             </div>
                                             @error('suratpermohonan')
@@ -181,7 +181,7 @@
                                         <div class="space-y-1 text-center">
                                             <div class="md:flex text-sm text-gray-600 no-underline">
                                                 <input id="scanktp" name="scanktp" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
-                                                <p class="pl-1">pdf or image only</p>
+                                                <p class="pl-1">pdf only (Max 1500Kb)</p>
                                             </div>
                                             @error('scanktp')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
@@ -212,7 +212,7 @@
                                         <div class="space-y-1 text-center">
                                             <div class="md:flex text-sm text-gray-600 no-underline">
                                                 <input id="suratpengantar" name="suratpengantar" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
-                                                <p class="pl-1">pdf or image only</p>
+                                                <p class="pl-1">pdf only (Max 1500Kb)</p>
                                             </div>
                                             @error('suratpengantar')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
@@ -234,7 +234,7 @@
                                         <div class="space-y-1 text-center">
                                             <div class="md:flex text-sm text-gray-600 no-underline">
                                                 <input id="suratpernyataan" name="suratpernyataan" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
-                                                <p class="pl-1">pdf or image only</p>
+                                                <p class="pl-1">pdf only (Max 1500Kb)</p>
                                             </div>
                                             @error('suratpernyataan')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
@@ -256,7 +256,7 @@
                                         <div class="space-y-1 text-center">
                                             <div class="md:flex text-sm text-gray-600 no-underline">
                                                 <input id="proposal" name="proposal" type="file" class="not-sr-only" accept=".pdf,.docx,.doc,image/*">
-                                                <p class="pl-1">pdf or image only</p>
+                                                <p class="pl-1">pdf only (Max 1500Kb)</p>
                                             </div>
                                             @error('proposal')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>

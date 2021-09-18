@@ -128,7 +128,7 @@ Monitoring:  {{ $data->status }}
                             <div class="block mb-20 sm:mt-10 md:mt-0">
                                 <div class="flex justify-between gap-6 border-t-2 border-gray-300">
                                     <p class="leading-relaxed text-lg text-left">Subtotal: </p>
-                                    <p class="leading-relaxed text-lg text-right">Rp.{{ number_format($data->total,2) }}</p>
+                                    <p class="leading-relaxed text-lg text-right">Rp.{{ number_format($data->total,2,',','.') }}</p>
                                 </div>
                                 <div class="flex justify-between">
                                     <p class="leading-relaxed text-lg text-left">Kode: </p>
@@ -136,7 +136,7 @@ Monitoring:  {{ $data->status }}
                                 </div>
                                 <div class="flex justify-between font-bold">
                                     <p class="leading-relaxed text-lg text-left">Total: </p>
-                                    <p class="leading-relaxed text-lg text-right">Rp.{{ number_format($data->total,2) }} </p>
+                                    <p class="leading-relaxed text-lg text-right">Rp.{{ number_format($data->total,2,',','.') }} </p>
                                 </div>
                             </div>
                             </div>
