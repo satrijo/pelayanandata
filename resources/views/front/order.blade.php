@@ -295,15 +295,17 @@
                                         @enderror
                                     </div>
                                 </div>
-                            @endforeach
 
-                            {{-- @foreach ($category as $cat)
-                                <div class="col-span-2 sm:mb-5 md:mb-0" id="{{ $cat->waktu }}" style="display: none;">
+                                <div class="auto-cols-max sm:mb-5 md:mb-0" id="{{ $cat->id }}" style="display: none;">
                                     <label class="block text-sm font-medium text-gray-700 required">
-                                        Nama
+                                        {{ $cat->deskripsi }}
                                     </label>
                                 </div>
-                            @endforeach --}}
+                            @endforeach
+
+
+
+
 
 
 
