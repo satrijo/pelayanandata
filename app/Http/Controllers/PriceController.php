@@ -46,13 +46,24 @@ class PriceController extends Controller
     public function edit($id)
     {
         $edit = Price::find($id);
+        $data = Category::all();
 
-        return view('backend.tarif.edit', compact('edit'));
+        return view('backend.tarif.edit', compact('edit', 'data'));
     }
 
     public function update(Request $request, $id)
     {
-        $update = Price::find($id)->update($request->all());
+        $id = $request->category_id;
+        $category = Category::find($id);
+
+        $update = Price::find($id)->update([
+            'namalayanan' => $request->namalayanan,
+            'jenislayanan' => $category->nama,
+            'tarif'     => $request->tarif,
+            'category_id'   => $id,
+            'satuan'        => $category->waktu,
+            'status'        => $request->status,
+        ]);
 
         return redirect()->route('tarif');
     }
