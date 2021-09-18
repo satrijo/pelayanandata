@@ -24,7 +24,8 @@
                 } else {
                 document.getElementById("{{ $cat->id }}").style.display = "none";
                 document.getElementById("{{ $cat->id . $cat->waktu }}").style.display = "none";
-                document.getElementById("{{ $cat->id }}").checked = false;
+                var cbarray = document.getElementsByClassName("cek");
+                for(var i = 0; i < cbarray.length; i++){ cbarray[i].checked = false }
 
                 }
             @endforeach
@@ -274,7 +275,7 @@
 
 
 
-                        <div class="bg-gray-100 md:grid md:grid-cols-4 gap-6 justify-center px-6 pt-5 pb-6 border-2 border-gray-200 border-dashed rounded-md">
+                        <div class="bg-gray-100 md:grid md:grid-cols-4 gap-6 justify-center px-6 pt-5 pb-6 border-2 border-gray-100 border-dashed rounded-md">
                             @foreach ($category as $cat )
                                 <div class="col-span-2 sm:mb-5 md:mb-0" id="{{ $cat->id }}" style="display: none;">
                                     <label class="block text-sm font-medium text-gray-700 required">
@@ -285,7 +286,7 @@
                                             @foreach ($cat->prices as $nilai )
                                             @if ($nilai)
                                                 <label class="block items-center mr-3 pl-4">
-                                                    <input type="checkbox" name="parametercuaca[]" value="{{$nilai->id}}" id="{{$cat->id}}">
+                                                    <input type="checkbox" name="parametercuaca[]" value="{{$nilai->id}}" class="cek">
                                                     <span class="ml-2">{{$nilai->namalayanan}} - Rp.{{number_format($nilai->tarif,2,',','.')}}
                                                         {{ $nilai->category->satuan }} / {{ $nilai->category->waktu }}</span>
                                                 </label>
@@ -307,14 +308,6 @@
                                     </label>
                                 </div>
                             @endforeach
-
-
-
-
-
-
-
-
 
                             <div class="col-span-2 sm:mb-5 md:mb-0">
                                 <label class="block text-sm font-medium text-gray-700">
