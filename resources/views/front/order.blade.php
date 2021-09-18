@@ -17,11 +17,11 @@
         <script>
             function ok(that) {
             @foreach ($category as $cat)
-                if (that.value == "{{ $cat->waktu }}") {
-                document.getElementById("{{ $cat->waktu }}").style = " ";
+                if (that.value == "{{ $cat->id }}") {
+                document.getElementById("{{ $cat->id }}").style = " ";
 
                 } else {
-                document.getElementById("{{ $cat->waktu }}").style.display = "none";
+                document.getElementById("{{ $cat->id }}").style.display = "none";
                 document.getElementById("{{ $cat->id }}").checked = false;
 
                 }
@@ -130,7 +130,7 @@
                                     <select onchange="ok(this);" name="category" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
                                         <option value="hari">Pilih Category</option>
                                         @foreach ($category as $cat)
-                                            <option value="{{ $cat->waktu }}">{{ $cat->nama }}</option>
+                                            <option value="{{ $cat->id }}">{{ $cat->nama }}</option>
                                         @endforeach
 
                                     </select>
@@ -274,7 +274,7 @@
 
                         <div class="bg-gray-200 md:grid md:grid-cols-4 gap-6 justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                             @foreach ($category as $cat )
-                                <div class="col-span-3 sm:mb-5 md:mb-0" id="{{ $cat->waktu }}" style="display: none;">
+                                <div class="col-span-3 sm:mb-5 md:mb-0" id="{{ $cat->id }}" style="display: none;">
                                     <label class="block text-sm font-medium text-gray-700 required">
                                         {{ $cat->nama }}
                                     </label>
