@@ -254,6 +254,7 @@ class OrderController extends Controller
             'proposal'          => $request->proposal ? $request->proposal->store('public/dataproposal') : null,
             'periodedari'       => $request->periodedari,
             'periodesampai'     => $request->periodesampai,
+            'totalperiode'      => $periode,
             'keterangan'        => $request->keterangan,
             'kode'              => $request->kode,
             'pembayaran'        => $request->jenispelayanan == "nolrupiah" ? "nol rupiah" : $request->pembayaran,

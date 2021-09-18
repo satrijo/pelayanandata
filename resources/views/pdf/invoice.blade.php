@@ -105,9 +105,9 @@
                 <th scope="row">{{$loop->index + 1 }}</th>
                 <td>{{ $p->namalayanan }}</td>
                 <td align="center">{{ $p->jenislayanan }}</td>
-                <td align="center">{{ ($data->periodesampai - $data->periodedari) + 1 }} {{$p->satuan}}</td>
+                <td align="center">{{ $data->totalperiode }} {{$p->satuan}}</td>
                 <td align="right">{{ number_format($p->tarif, 2,',','.') }}</td>
-                <td align="right">Rp.{{ number_format($p->tarif * (($data->periodesampai - $data->periodedari) +1), 2) }}</td>
+                <td align="right">Rp.{{ number_format($p->tarif * $data->totalperiode, 2, ',','.') }}</td>
             </tr>
         @endforeach
     </tbody>

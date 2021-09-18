@@ -32,8 +32,10 @@ class HomeController extends Controller
     {
         $data = Order::where('invoice', $id)->first();
 
-        $emailQueue = (new \App\Jobs\SendEmailJob($id))->delay(Carbon::now()->addSeconds(10));
+        $emailQueue = (new \App\Jobs\SendEmailJob($id));
         dispatch($emailQueue);
+
+        // ->delay(Carbon::now()->addSeconds(10))
 
         $produk = $data->prices()->get();
 

@@ -471,7 +471,7 @@
                                 <tr>
                                   <td class="attributes_item">
                                     <span class="f-fallback">
-                                        <strong>Total :</strong> Rp.{{number_format($total, 2)}}
+                                        <strong>Total :</strong> Rp.{{number_format($total, 2,',','.')}}
                                     </span>
                                   </td>
                                 </tr>

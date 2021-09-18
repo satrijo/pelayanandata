@@ -115,9 +115,9 @@ Monitoring:  {{ $data->status }}
                                     <tr>
                                     <td class="px-4 py-3">{{ $p->namalayanan }}</td>
                                     <td class="px-4 py-3">{{ $p->jenislayanan }}</td>
-                                    <td class="px-4 py-3">{!! ($data->periodesampai - $data->periodedari) + 1 !!} {{$p->satuan}}</td>
+                                    <td class="px-4 py-3">{{ $data->totalperiode }} {{  $p->satuan }}</td>
                                     <td class="px-4 py-3">{{ number_format($p->tarif, 2) }}</td>
-                                    <td class="px-4 py-3 text-right">Rp.{{ number_format($p->tarif * (($data->periodesampai - $data->periodedari) +1), 2) }}</td>
+                                    <td class="px-4 py-3 text-right">Rp.{{ number_format($p->tarif * $data->totalperiode, 2,',','.') }}</td>
                                 </tr>
                                 @endforeach
                                 </tbody>

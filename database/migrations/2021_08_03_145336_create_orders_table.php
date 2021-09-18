@@ -31,6 +31,7 @@ class CreateOrdersTable extends Migration
             $table->string('parametercuaca')->nullable();
             $table->string('periodedari')->nullable();
             $table->string('periodesampai')->nullable();
+            $table->integer('totalperiode')->nullable();
             $table->text('keterangan')->nullable();
             $table->string('kode')->nullable();
             $table->string('pembayaran');
