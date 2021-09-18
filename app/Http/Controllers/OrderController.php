@@ -273,7 +273,7 @@ class OrderController extends Controller
                 'url' => $baseApiUrl . '/messages',
                 'method' => 'POST',
                 'payload' => json_encode([
-                    'message' => 'https://ptsp.joglohub.com/images/qr' . $invoice . '.png',
+                    'message' => 'https://ptsp.joglohub.com/images/qr/' . $invoice . '.png',
                     'phone_number' => $hp,
                     'message_type' => 'image',
                     'device_id' => 'redminote',

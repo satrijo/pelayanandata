@@ -32,7 +32,7 @@ class QuestionController extends Controller
 
     public function edit($id)
     {
-        $data = Question::findorfail($id)->first();
+        $data = Question::findorfail($id);
         return view('backend.faq.edit', compact('data'));
     }
 
