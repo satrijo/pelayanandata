@@ -117,8 +117,8 @@ Monitoring:  {{ $data->status }}
                                     <td class="px-4 py-3">{{ $p->jenislayanan }}</td>
                                     <td class="px-4 py-3">{{ $data->totalperiode }} @if ($p->satuan !== 'series')
                                         {{  $p->satuan }} @else @php
-                                            $data = explode(" ",$p->category->satuan);
-                                            {{ $data }}
+                                            $data = explode(" ", $p->category->satuan);
+                                            {{ $data[1] }}
                                         @endphp
                                     @endif</td>
                                     <td class="px-4 py-3">{{ number_format($p->tarif, 2) }}</td>
