@@ -291,7 +291,7 @@
                                     <div class="justify-center">
                                         <div class="mt-2 overflow-auto h-28">
                                             @foreach ($cat->prices as $nilai )
-                                            @if ($nilai)
+                                            @if ($nilai->status == 'aktif')
                                                 <label class="block items-center mr-3 pl-4">
                                                     <input type="checkbox" name="parametercuaca[]" value="{{$nilai->id}}" class="cek">
                                                     <span class="ml-2">{{$nilai->namalayanan}} - Rp.{{number_format($nilai->tarif,2,',','.')}}

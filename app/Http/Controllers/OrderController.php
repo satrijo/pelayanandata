@@ -144,7 +144,7 @@ class OrderController extends Controller
 
     public function create()
     {
-        $category = Category::all();
+        $category = Category::where('status', 'aktif')->get();
         $take = Price::where('status', 'aktif')->count();
         $harga = Price::where('status', 'aktif')->orderBy('namalayanan')->get();
 

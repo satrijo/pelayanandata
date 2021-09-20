@@ -19,6 +19,13 @@ class PriceController extends Controller
         return view('backend.tarif.tarif', compact('data'));
     }
 
+    public function show()
+    {
+        $category = Category::where('status', 'aktif')->get();
+
+        return view('front.tarif', compact('category'));
+    }
+
     public function create()
     {
         $data = Category::all();

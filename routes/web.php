@@ -96,6 +96,8 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('/konfirmasi', [ConfirmationController::class, 'index'])->name('konfirmasi');
     Route::post('/konfirmasi', [ConfirmationController::class, 'store'])->name('konfirmasi.store');
 
+    Route::get('/tarif', [PriceController::class, 'show'])->name('tarif.show');
+
     Route::get('/alur-permohonan', [WorkflowController::class, 'index'])->name('workflow');
 
     Route::get('/faq', [QuestionController::class, 'show'])->name('faq.show');
