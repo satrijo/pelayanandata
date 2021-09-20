@@ -295,7 +295,9 @@
                                                 <label class="block items-center mr-3 pl-4">
                                                     <input type="checkbox" name="parametercuaca[]" value="{{$nilai->id}}" class="cek">
                                                     <span class="ml-2">{{$nilai->namalayanan}} - Rp.{{number_format($nilai->tarif,2,',','.')}}
-                                                        {{ $nilai->category->satuan }} / {{ $nilai->category->waktu }}</span>
+                                                        {{ $nilai->category->satuan }} @if ($nilai->satuan !== "series")
+                                                        / {{ ucfirst($nilai->category->waktu) }}
+                                                        @endif</span>
                                                 </label>
                                             @endif
                                             @endforeach
