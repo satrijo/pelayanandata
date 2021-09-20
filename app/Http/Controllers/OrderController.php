@@ -176,19 +176,20 @@ class OrderController extends Controller
         $qr = QrCode::format('png')->merge(url('images/logo_putih.png'), 0.25, true)->size(300)->margin(1)->errorCorrection('H')
             ->generate(url('monitoring/' . $invoice), public_path('images/qr/' . $invoice . '.png'));
 
+        $cekSatuan = Price::find($request->parametercuaca[0])->satuan;
         $dari = $request->periodedari;
         $dateDari = str_replace('/', '-', $dari);
 
         $sampai = $request->periodesampai;
         $dateSampai = str_replace('/', '-', $sampai);
 
-        if($request->category == "hari"){
+        if($cekSatuan == "hari"){
             $from =  strtotime($dateDari);
             $till=   strtotime($dateSampai);
             $hasil= $till - $from;
             $periode = ($hasil / (60 * 60 * 24) + 1);
 
-        } else if ($request->category == "tahun") {
+        } else if ($cekSatuan == "tahun") {
             $from =  strtotime($dateDari);
             $fromDate = idate('Y', $from);
 
