@@ -278,47 +278,47 @@ class OrderController extends Controller
         $order->prices()->sync($parameter);
         $pesan = "*Hallo $order->nama* \n*Permohonan Data Cuaca Sedang Ditinjau* \n \nNomor invoice anda adalah: $order->invoice \nTotal tarif Rp." . number_format($order->total, 2, ",", ".") . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin: 08114037700::";
         $gambar = url($order->qrcode);
-        try {
-            $baseApiUrl = 'https://api.kirimwa.id/v1';
-            $reqParams = [
-                'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
-                'url' => $baseApiUrl . '/messages',
-                'method' => 'POST',
-                'payload' => json_encode([
-                    'message' => $gambar,
-                    'phone_number' => $hp,
-                    'message_type' => 'image',
-                    'device_id' => 'redminote',
-                    'caption' => $pesan,
-                ])
-            ];
+        // try {
+        //     $baseApiUrl = 'https://api.kirimwa.id/v1';
+        //     $reqParams = [
+        //         'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
+        //         'url' => $baseApiUrl . '/messages',
+        //         'method' => 'POST',
+        //         'payload' => json_encode([
+        //             'message' => $gambar,
+        //             'phone_number' => $hp,
+        //             'message_type' => 'image',
+        //             'device_id' => 'redminote',
+        //             'caption' => $pesan,
+        //         ])
+        //     ];
 
-            $response = $this->apiKirimWaRequest($reqParams);
-            // echo $response['body'];
-        } catch (\Exception $e) {
-            print_r($e);
-        }
+        //     $response = $this->apiKirimWaRequest($reqParams);
+        //     // echo $response['body'];
+        // } catch (\Exception $e) {
+        //     print_r($e);
+        // }
 
-        try {
-            $baseApiUrl = 'https://api.kirimwa.id/v1';
-            $reqParams = [
-                'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
-                'url' => $baseApiUrl . '/messages',
-                'method' => 'POST',
-                'payload' => json_encode([
-                    'message' => "Notifikasi Permohonan data atas nama \n$order->nama \nInstansi: $order->instansi \n\nNIK: $order->nik \nInvoice: $order->invoice \nNo. WA: $order->nohp  \n\n ::Pesan ini dibuat otomatis:: ",
-                    'phone_number' => '6282111119138-1629897035',
-                    'message_type' => 'text',
-                    'device_id' => 'redminote',
-                    'is_group_message' => true,
-                ])
-            ];
+        // try {
+        //     $baseApiUrl = 'https://api.kirimwa.id/v1';
+        //     $reqParams = [
+        //         'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
+        //         'url' => $baseApiUrl . '/messages',
+        //         'method' => 'POST',
+        //         'payload' => json_encode([
+        //             'message' => "Notifikasi Permohonan data atas nama \n$order->nama \nInstansi: $order->instansi \n\nNIK: $order->nik \nInvoice: $order->invoice \nNo. WA: $order->nohp  \n\n ::Pesan ini dibuat otomatis:: ",
+        //             'phone_number' => '6282111119138-1629897035',
+        //             'message_type' => 'text',
+        //             'device_id' => 'redminote',
+        //             'is_group_message' => true,
+        //         ])
+        //     ];
 
-            $response = $this->apiKirimWaRequest($reqParams);
-            // echo $response['body'];
-        } catch (\Exception $e) {
-            print_r($e);
-        }
+        //     $response = $this->apiKirimWaRequest($reqParams);
+        //     // echo $response['body'];
+        // } catch (\Exception $e) {
+        //     print_r($e);
+        // }
 
         // dd($response['body']);
 

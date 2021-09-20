@@ -80,7 +80,7 @@
             <td align="right">{{ $data->email }} - {{ $data->nohp }}</td>
         </tr>
         <tr>
-            <td align="left">Metode Pembayaran: {{$data->pembayaran}} </td>
+            <td align="left">Metode Pembayaran: {{ucfirst($data->pembayaran)}} </td>
         </tr>
     </tbody>
 
@@ -105,7 +105,14 @@
                 <th scope="row">{{$loop->index + 1 }}</th>
                 <td>{{ $p->namalayanan }}</td>
                 <td align="center">{{ $p->jenislayanan }}</td>
-                <td align="center">{{ $data->totalperiode }} {{$p->satuan}}</td>
+                <td align="center">{{ $data->totalperiode }} @if ($p->satuan !== 'series')
+                    {{  $p->satuan }} @else @php
+                    $explode = explode(" ", $p->category->satuan);
+
+                    @endphp
+                    {{ $explode[1] }}
+                    @endif
+                </td>
                 <td align="right">{{ number_format($p->tarif, 2,',','.') }}</td>
                 <td align="right">Rp.{{ number_format($p->tarif * $data->totalperiode, 2, ',','.') }}</td>
             </tr>

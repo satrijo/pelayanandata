@@ -117,11 +117,12 @@ Monitoring:  {{ $data->status }}
                                     <td class="px-4 py-3">{{ $p->jenislayanan }}</td>
                                     <td class="px-4 py-3">{{ $data->totalperiode }} @if ($p->satuan !== 'series')
                                         {{  $p->satuan }} @else @php
-                                            $data = explode(" ", $p->category->satuan);
-                                            {{ $data[1] }}
+                                            $explode = explode(" ", $p->category->satuan);
+
                                         @endphp
+                                        {{ $explode[1] }}
                                     @endif</td>
-                                    <td class="px-4 py-3">{{ number_format($p->tarif, 2) }}</td>
+                                    <td class="px-4 py-3">{{ number_format($p->tarif, 2, ',', '.') }}</td>
                                     <td class="px-4 py-3 text-right">Rp.{{ number_format($p->tarif * $data->totalperiode, 2,',','.') }}</td>
                                 </tr>
                                 @endforeach
