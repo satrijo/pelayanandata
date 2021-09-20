@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function create()
     {
         $satuan  =   ['Per Lokasi', 'Per Buku', 'Per Peta', 'Per Rute'];
-        $waktu   =   ['hari', 'tahun', 'series'];
+        $waktu   =   ['hari', 'bulan', 'tahun', 'series'];
         return view('backend.category.create', compact('satuan', 'waktu'));
     }
 
@@ -63,7 +63,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $satuan  =   ['Per Lokasi', 'Per Buku', 'Per Peta', 'Per Rute'];
-        $waktu   =   ['hari', 'tahun', 'series'];
+        $waktu   =   ['hari', 'bulan', 'tahun', 'series'];
 
         $edit = Category::find($id);
         return view('backend.category.edit', compact('edit', 'satuan', 'waktu'));

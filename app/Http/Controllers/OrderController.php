@@ -188,6 +188,17 @@ class OrderController extends Controller
             $till=   strtotime($dateSampai);
             $hasil= $till - $from;
             $periode = ($hasil / (60 * 60 * 24) + 1);
+        } else if ($cekSatuan == "bulan") {
+            $from =  strtotime($dateDari);
+            $till =   strtotime($dateSampai);
+
+            $year1 = date('Y', $from);
+            $year2 = date('Y', $till);
+
+            $month1 = date('m', $from);
+            $month2 = date('m', $till);
+
+            $periode = (($year2 - $year1) * 12) + ($month2 - $month1) + 1;
 
         } else if ($cekSatuan == "tahun") {
             $from =  strtotime($dateDari);

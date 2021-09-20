@@ -44,7 +44,9 @@ Tarif Permohonan Data
                                                             </div>
                                                         </td>
                                                         <td class="px-4 py-3 text-sm">
-                                                            Rp.{{ number_format($e->tarif,2, ',','.') }}
+                                                            Rp.{{ number_format($e->tarif,2, ',','.') }} {{ $e->category->satuan }} @if ($e->satuan !== "series")
+                                                               / {{ ucfirst($e->satuan) }}
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                 @endif
