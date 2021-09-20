@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public $satuan  =   ['Per Lokasi', 'Per Buku', 'Per Peta', 'Per Rute'];
+    public $waktu   =   ['hari', 'bulan', 'tahun', 'series'];
     /**
      * Display a listing of the resource.
      *
@@ -25,8 +27,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $satuan  =   ['Per Lokasi', 'Per Buku', 'Per Peta', 'Per Rute'];
-        $waktu   =   ['hari', 'bulan', 'tahun', 'series'];
+        $satuan = $this->satuan;
+        $waktu = $this->waktu;
         return view('backend.category.create', compact('satuan', 'waktu'));
     }
 
@@ -62,8 +64,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $satuan  =   ['Per Lokasi', 'Per Buku', 'Per Peta', 'Per Rute'];
-        $waktu   =   ['hari', 'bulan', 'tahun', 'series'];
+        $satuan = $this->satuan;
+        $waktu = $this->waktu;
 
         $edit = Category::find($id);
         return view('backend.category.edit', compact('edit', 'satuan', 'waktu'));

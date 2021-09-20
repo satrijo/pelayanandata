@@ -312,7 +312,7 @@
                                     <label class="block text-sm font-medium text-gray-700 required">
                                         Deskripsi
                                     </label>
-                                    <label class="block text-sm font-mono text-gray-700 required">
+                                    <label class="block text-sm font-mono text-gray-700 required mb-5">
                                         {{ $cat->deskripsi }}
                                     </label>
                                 </div>
