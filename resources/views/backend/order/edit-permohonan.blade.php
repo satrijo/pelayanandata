@@ -14,7 +14,7 @@
                     Informasi Permohonan Data Cuaca: {{ $data->status }}
                 </h3>
                 <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                    Diajukan tanggal: {{ date('l, d M Y', strtotime($data->created_at))}}.
+                    Diajukan tanggal: {{ $data->created_at->isoFormat('dddd, D MMMM Y') }}.
                 </p>
             </div>
             <div class="border-t border-gray-200">
@@ -182,9 +182,9 @@
                                 <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
 
                                     @if ($data->periodedari == $data->periodesampai)
-                                    Tahun {{$data->periodesampai}}
+                                    {{$data->periodesampai}}
                                     @endif
-                                    Tahun {{ $data->periodedari}} - {{ $data->periodesampai }}
+                                   {{ $data->periodedari}} - {{ $data->periodesampai }}
                                 </li>
                             </ul>
                         </dd>

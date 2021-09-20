@@ -81,7 +81,7 @@
                         @endswitch
                     </td>
                     <td class="px-4 py-3 text-sm">
-                        {{ date('l, d M Y', strtotime($d->created_at)) }}
+                        {{ $d->created_at->isoFormat('dddd, D MMMM Y') }}
                     </td>
                     <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">

@@ -10,6 +10,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.3",
+        "laravel-lang/lang": "~8.0",
         "laravel/framework": "^8.5.23",
         "laravel/tinker": "^2.5",
         "sentry/sentry-laravel": "^2.8",

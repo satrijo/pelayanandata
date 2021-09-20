@@ -64,7 +64,7 @@
     </thead>
     <tbody>
         <tr>
-            <td align="left">Dibuat: {{ date('l, d M Y', strtotime($data->created_at))}} </td>
+            <td align="left">Dibuat: {{ $data->created_at->isoFormat('dddd, D MMMM Y') }} </td>
             <td align="right">{{ $data->nama }}</td>
         </tr>
         <tr>
@@ -156,7 +156,7 @@
         <tr>
             <td colspan="4"></td>
             <td align="center"></td>
-            <td align="center">{{ date('l, d M Y', strtotime($data->updated_at))}}</td>
+            <td align="center">{{ $data->updated_at->isoFormat('dddd, D MMMM Y') }}</td>
         </tr>
 
   </table>

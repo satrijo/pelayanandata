@@ -81,7 +81,7 @@ Monitoring:  {{ $data->status }}
                                 <div class="md:flex md:justify-between md:grid-cols-2 sm:mx-8 lg:mx-auto lg:w-2/3 sm:w-full md:w-2/3">
                                     <div class="md:block md:auto-cols-max text-left">
                                         <p class="mx-auto leading-relaxed text-base font-bold">Invoice: {{$data->invoice}} </p>
-                                        <p class="mx-auto leading-relaxed text-base">Dibuat: {{ date('l, d M Y', strtotime($data->created_at))}} </p>
+                                        <p class="mx-auto leading-relaxed text-base">Dibuat: {{ $data->created_at->isoFormat('dddd, D MMMM Y') }} </p>
                                         <p class="mx-auto leading-relaxed text-base">Status: {{$data->status}} </p>
                                         <p class="mx-auto leading-relaxed text-base">Status: {{$data->jenispelayanan == "pnbp" ? "PNBP / Bertarif" : "Nol Rupiah"}} </p>
                                         <p class="mx-auto leading-relaxed text-base">Periode: {{$data->periodedari}} - {{$data->periodesampai}} </p>

@@ -30,6 +30,7 @@ class HomeController extends Controller
 
     public function sukses($id)
     {
+
         $data = Order::where('invoice', $id)->first();
 
         $emailQueue = (new \App\Jobs\SendEmailJob($id));
