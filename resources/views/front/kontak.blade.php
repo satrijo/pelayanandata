@@ -36,13 +36,13 @@ Kontak
 <section class="relative py-16 bg-gray-300">
     <div class="container mx-auto md:px-4">
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
-            <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg p-10 md:px-10 py-10">
+            <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg p-1">
                 <div class="justify-center items-center">
 
 
                     {{-- Isi --}}
 
-                    <div id="map"></div>
+                    <div id="map" class="rounded-lg"></div>
 
                     {{-- end isi  --}}
 
