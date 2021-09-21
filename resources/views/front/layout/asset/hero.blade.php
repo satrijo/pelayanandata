@@ -1,7 +1,32 @@
+@push('assets')
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <script src="https://unpkg.com/esri-leaflet@3.0.2/dist/esri-leaflet.js"
+        integrity="sha512-myckXhaJsP7Q7MZva03Tfme/MSF5a6HC2xryjAM4FxPLHGqlh5VALCbywHnzs2uPoF/4G/QVXyYDDSkp5nPfig=="
+        crossorigin=""></script>
+
+    <style>
+        #atas{
+            background-color: black;
+            opacity: 50%;
+        }
+    </style>
+
+
+@endpush
 <div class="relative pt-16 pb-32 flex content-center items-center justify-center" style="min-height: 75vh;">
-    <div class="absolute top-0 w-full h-full bg-top bg-cover"
-        style='background-image: url(/images/bg.gif);'>
-        <span id="blackOverlay" class="w-full h-full absolute opacity-75 bg-black"></span>
+
+    <div id="map" class="absolute top-0 w-full h-full bg-top bg-cover z-0">
+    </div>
+    <div id="atas" class="absolute top-0 w-full h-full bg-top bg-cover z-0">
     </div>
     <div class="container relative mx-auto">
         <div class="items-center flex flex-wrap">
@@ -32,3 +57,10 @@
         </svg>
     </div>
 </div>
+
+<script>
+    var map = L.map('map', {zoomControl: false}).setView([-5.487882,122.61088], 14);
+    L.esri.basemapLayer('Imagery').addTo(map);
+
+
+</script>

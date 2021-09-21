@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConfirmationController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -101,6 +102,9 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('/alur-permohonan', [WorkflowController::class, 'index'])->name('workflow');
 
     Route::get('/faq', [QuestionController::class, 'show'])->name('faq.show');
+
+    Route::get('/kontak', [ContactController::class, 'index'])->name('kontak');
+
 
 });
 
