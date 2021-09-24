@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\WorkflowController;
 
 use Illuminate\Support\Facades\Route;
@@ -83,6 +84,15 @@ Route::group(['middleware' => 'revalidate'], function()
         Route::get('/faq/edit/{id}', [QuestionController::class, 'edit'])->name('faq.edit');
         Route::put('/faq/update/{id}', [QuestionController::class, 'update'])->name('faq.update');
         Route::delete('/faq/destroy/{id}', [QuestionController::class, 'destroy'])->name('faq.destroy');
+
+        //kontak
+        Route::get('/contact', [ContactController::class, 'edit'])->name('contact.edit');
+        Route::put('/contact/update/{id}', [contactController::class, 'update'])->name('contact.update');
+
+        //setting
+
+        Route::get('/setting', [SettingController::class, 'edit'])->name('setting.edit');
+        Route::put('/setting/update/{id}', [SettingController::class, 'update'])->name('setting.update');
     });
 
     Route::get('/form', [OrderController::class, 'create'])->name('order');

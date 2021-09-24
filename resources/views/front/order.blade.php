@@ -58,7 +58,7 @@
                                 Nama Lengkap
                                 </label>
                                 <div class="mt-1 flex rounded-md shadow-sm">
-                                <input value="{{ old('nama') }}" type="text" name="nama" id="nama" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="contoh: Riyo Apriyanto" required>
+                                <input value="{{ old('nama') }}" type="text" name="nama" id="nama" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="contoh: Satriyo Unggul Wicaksono" required>
                                 </div>
                             </div>
                             <div class="auto-cols-max ">

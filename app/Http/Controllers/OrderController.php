@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Price;
+use App\Models\Setting;
 use Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
@@ -14,10 +15,18 @@ use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use File;
 
+
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+    public function metasetting()
+    {
+        $setting = Setting::first();
+        return $setting;
+    }
+
 
     public function index()
     {
@@ -85,29 +94,35 @@ class OrderController extends Controller
         $request->data = is_null($request->data) ? $data->data : $request->data->store('public/dataselesai');
 
 
-        $pesan = "*Hallo $data->nama* \n```Status Permohonan Data Cuaca: $request->status``` \n\n```Note: $request->infoadmin```\n********* \n\nNo. invoice anda: $data->invoice \nSilahkan cek di https://ptsp.meteobaubau.com/monitoring/".$data->invoice. " untuk info lebih lanjut." . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin: 08114037700::";
+        $pesan = "*Hallo $data->nama* \n```Status Permohonan Data Cuaca: $request->status``` \n\n```Note: $request->infoadmin```\n********* \n\nNo. invoice anda: $data->invoice \nSilahkan cek di ". url('monitoring/' . $data->invoice). " untuk info lebih lanjut." . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin:" . $this->metasetting()->nowa . "::";
 
-        // $pesan = 'test update';
-        try {
-            $baseApiUrl = 'https://api.kirimwa.id/v1';
-            $reqParams = [
-                'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
-                'url' => $baseApiUrl . '/messages',
-                'method' => 'POST',
-                'payload' => json_encode([
-                    'message' => $pesan,
-                    'phone_number' => $data->nohp,
-                    'message_type' => 'text',
-                    'device_id' => 'redminote',
-                ])
-            ];
+        if($this->metasetting()->token !== null)
+        {
 
-            $response = $this->apiKirimWaRequest($reqParams);
-            // echo $response['body'];
-            // dd($response['body']);
-        } catch (\Exception $e) {
-            print_r($e);
+            try {
+                $baseApiUrl = 'https://api.kirimwa.id/v1';
+                $reqParams = [
+                    'token' => $this->metasetting()->token,
+                    'url' => $baseApiUrl . '/messages',
+                    'method' => 'POST',
+                    'payload' => json_encode([
+                        'message' => $pesan,
+                        'phone_number' => $data->nohp,
+                        'message_type' => 'text',
+                        'device_id' => 'redminote',
+                    ])
+                ];
+
+                $response = $this->apiKirimWaRequest($reqParams);
+                // echo $response['body'];
+                // dd($response['body']);
+            } catch (\Exception $e) {
+                print_r($e);
+            }
+
         }
+
+
 
 
         $update = Order::where('invoice', $id)->first()->update([
@@ -276,48 +291,52 @@ class OrderController extends Controller
         ]);
 
         $order->prices()->sync($parameter);
-        $pesan = "*Hallo $order->nama* \n*Permohonan Data Cuaca Sedang Ditinjau* \n \nNomor invoice anda adalah: $order->invoice \nTotal tarif Rp." . number_format($order->total, 2, ",", ".") . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin: 08114037700::";
+        $pesan = "*Hallo $order->nama* \n*Permohonan Data Cuaca Sedang Ditinjau* \n \nNomor invoice anda adalah: $order->invoice \nTotal tarif Rp." . number_format($order->total, 2, ",", ".") . "\n\n::Pesan ini tidak untuk dibalas::\n::Hubungi admin:". $this->metasetting()->nowa . "::";
         $gambar = url($order->qrcode);
-        try {
-            $baseApiUrl = 'https://api.kirimwa.id/v1';
-            $reqParams = [
-                'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
-                'url' => $baseApiUrl . '/messages',
-                'method' => 'POST',
-                'payload' => json_encode([
-                    'message' => $gambar,
-                    'phone_number' => $hp,
-                    'message_type' => 'image',
-                    'device_id' => 'redminote',
-                    'caption' => $pesan,
-                ])
-            ];
 
-            $response = $this->apiKirimWaRequest($reqParams);
-            // echo $response['body'];
-        } catch (\Exception $e) {
-            print_r($e);
-        }
+        if ($this->metasetting()->token !== null) {
+            try {
+                $baseApiUrl = 'https://api.kirimwa.id/v1';
+                $reqParams = [
+                    'token' => $this->metasetting()->token,
+                    'url' => $baseApiUrl . '/messages',
+                    'method' => 'POST',
+                    'payload' => json_encode([
+                        'message' => $gambar,
+                        'phone_number' => $hp,
+                        'message_type' => 'image',
+                        'device_id' => 'redminote',
+                        'caption' => $pesan,
+                    ])
+                ];
 
-        try {
-            $baseApiUrl = 'https://api.kirimwa.id/v1';
-            $reqParams = [
-                'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
-                'url' => $baseApiUrl . '/messages',
-                'method' => 'POST',
-                'payload' => json_encode([
-                    'message' => "Notifikasi Permohonan data atas nama \n$order->nama \nInstansi: $order->instansi \n\nNIK: $order->nik \nInvoice: $order->invoice \nNo. WA: $order->nohp  \n\n ::Pesan ini dibuat otomatis:: ",
-                    'phone_number' => '6282111119138-1629897035',
-                    'message_type' => 'text',
-                    'device_id' => 'redminote',
-                    'is_group_message' => true,
-                ])
-            ];
+                $response = $this->apiKirimWaRequest($reqParams);
+                // echo $response['body'];
+            } catch (\Exception $e) {
+                print_r($e);
+            }
 
-            $response = $this->apiKirimWaRequest($reqParams);
-            // echo $response['body'];
-        } catch (\Exception $e) {
-            print_r($e);
+            try {
+                $baseApiUrl = 'https://api.kirimwa.id/v1';
+                $reqParams = [
+                    'token' => $this->metasetting()->token,
+                    'url' => $baseApiUrl . '/messages',
+                    'method' => 'POST',
+                    'payload' => json_encode([
+                        'message' => "Notifikasi Permohonan data atas nama \n$order->nama \nInstansi: $order->instansi \n\nNIK: $order->nik \nInvoice: $order->invoice \nNo. WA: $order->nohp  \n\n ::Pesan ini dibuat otomatis:: ",
+                        'phone_number' => $this->metasetting()->wag,
+                        'message_type' => 'text',
+                        'device_id' => 'redminote',
+                        'is_group_message' => true,
+                    ])
+                ];
+
+                $response = $this->apiKirimWaRequest($reqParams);
+                // echo $response['body'];
+            } catch (\Exception $e) {
+                print_r($e);
+            }
+
         }
 
         // dd($response['body']);

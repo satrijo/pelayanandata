@@ -7,6 +7,7 @@
 {{-- @section('marquee')
     @include('front.layout.asset.marquee-up')
 @endsection --}}
+@inject('setting','App\Http\Controllers\SettingController')
 @section('content')
 <section class="pb-20 bg-gray-300 -mt-24">
     <div class="container mx-auto px-4">
@@ -51,7 +52,7 @@
                         </div>
                         <h6 class="text-xl font-semibold">FAQ Pelayanan PNBP</h6>
                         <p class="mt-2 mb-4 text-gray-600">
-                            Informasi seputar pelayanan PNBP Stasiun Meteorologi Betoambari Baubau, meliputi alur
+                            Informasi seputar pelayanan PNBP {{ $setting->meta()->upt }}, meliputi alur
                             Permohonan data dan persyaratan
                             yang dibutuhkan oleh pemohon data cuaca.
                         </p>

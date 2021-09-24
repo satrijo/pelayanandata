@@ -22,32 +22,37 @@ class ConfirmationController extends Controller
             'bukti'     =>  'required|mimes:png,jpg,pdf|max:5000',
         ]);
 
+        $meta = new OrderController;
+
         $ada = Order::where('invoice', $request->invoice)->first();
 
         if (is_null($ada)){
             return back()->with(['gagal' => 'Maaf nomor invoice yang anda masukan tidak tersedia']);
         }
 
-        try {
-            $baseApiUrl = 'https://api.kirimwa.id/v1';
-            $reqParams = [
-                'token' => 'JYmU8E5eswOll6qd@Us1_Qw_iMtzNnLtefFTjvdXyNrUaqu~-satriyo',
-                'url' => $baseApiUrl . '/messages',
-                'method' => 'POST',
-                'payload' => json_encode([
-                    'message' => "Notifikasi\nKonfirmasi Pembayaran \n```Nomor Invoice: " . $request->invoice ." ```  \n\n ::Pesan ini dibuat otomatis:: ",
-                    'phone_number' => '6282111119138-1629897035',
-                    'message_type' => 'text',
-                    'device_id' => 'redminote',
-                    'is_group_message' => true,
-                ])
-            ];
+        if ($meta->metasetting()->token !== null) {
 
-            $order = new OrderController;
-            $response = $order->apiKirimWaRequest($reqParams);
-            // echo $response['body'];
-        } catch (\Exception $e) {
-            print_r($e);
+            try {
+                $baseApiUrl = 'https://api.kirimwa.id/v1';
+                $reqParams = [
+                    'token' => $meta->metasetting()->token,
+                    'url' => $baseApiUrl . '/messages',
+                    'method' => 'POST',
+                    'payload' => json_encode([
+                        'message' => "Notifikasi\nKonfirmasi Pembayaran \n```Nomor Invoice: " . $request->invoice ." ```  \n\n ::Pesan ini dibuat otomatis:: ",
+                        'phone_number' => $meta->metasetting()->wag,
+                        'message_type' => 'text',
+                        'device_id' => 'redminote',
+                        'is_group_message' => true,
+                    ])
+                ];
+
+                $response = $meta->apiKirimWaRequest($reqParams);
+                // echo $response['body'];
+            } catch (\Exception $e) {
+                print_r($e);
+            }
+
         }
 
         $konfirmasi = Confirmation::create([

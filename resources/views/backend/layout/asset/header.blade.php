@@ -45,7 +45,7 @@
                 </button>
             </li>
             <!-- Notifications menu -->
-            <li class="relative">
+            {{-- <li class="relative">
                 <button class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
                     @click="toggleNotificationsMenu" @keydown.escape="closeNotificationsMenu" aria-label="Notifications"
                     aria-haspopup="true">
@@ -91,7 +91,7 @@
                         </li>
                     </ul>
                 </template>
-            </li>
+            </li> --}}
             <!-- Profile menu -->
             <li class="relative">
                 <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
@@ -132,7 +132,7 @@
                         <li class="flex">
                             <form method="POST" action="{{ route('logout') }}" class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" >
                                 @csrf
-                                <button type="submit" class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200">
+                                <button type="submit" class="inline-flex items-center w-full py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200">
                                 <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
                                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                     <path

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Order;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
@@ -14,7 +16,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('front.home');
+        $data = Contact::first();
+
+        return view('front.home', compact('data'));
     }
 
     public function monitoring()

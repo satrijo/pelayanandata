@@ -1,3 +1,4 @@
+@inject('setting','App\Http\Controllers\SettingController')
 <footer class="relative bg-gray-300 pt-8 pb-6">
     <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
         style="height: 80px;">
@@ -11,26 +12,92 @@
             <div class="w-full lg:w-6/12 px-4">
                 <h4 class="text-3xl font-semibold">Let's keep in touch!</h4>
                 <h5 class="text-lg mt-0 mb-2 text-gray-700">
-                    Find us on any of these platforms, we respond 1-2 business days.
+                    Hubungi kami melalui social media, Kami akan merespon 1-2 hari kerja.
                 </h5>
-                <div class="mt-6">
-                    <button
-                        class="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                        type="button">
-                        <i class="flex fab fa-twitter"></i>
-                    </button>
-                    <button
+                <div class="mt-6 flex">
+                    <a
                         class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                        type="button">
-                        <i class="flex fab fa-facebook-square"></i>
-                    </button>
-                    <button
+                        href="{{ $setting->meta()->facebook }}">
+                        <i class="flex fab fa-facebook"></i>
+                    </a>
+                    <a
+                        class="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                        href="{{ $setting->meta()->twitter }}">
+                        <i class="flex fab fa-twitter"></i>
+                    </a>
+                    <a
+                        class="bg-white text-red-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                        href="{{ $setting->meta()->youtube }}">
+                        <i class="flex fab fa-youtube"></i>
+                    </a>
+                    <a
                         class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                        type="button">
+                        href="{{ $setting->meta()->instagram }}">
                         <i class="flex fab fa-instagram"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
+
+            @php
+                $exp1 = explode(' ', $setting->meta()->link1);
+            @endphp
+            @if (in_array('>', $exp1))
+            @php
+                $link1 = explode('>', $setting->meta()->link1);
+            @endphp
+
+            @else
+            @php
+                $link1[1] = "Link";
+                $link1[0] = "#";
+            @endphp
+            @endif
+
+            @php
+            $exp1 = explode(' ', $setting->meta()->link2);
+            @endphp
+            @if (in_array('>', $exp1))
+            @php
+            $link2 = explode('>', $setting->meta()->link2);
+            @endphp
+
+            @else
+            @php
+            $link2[1] = "Link";
+            $link2[0] = "#";
+            @endphp
+            @endif
+
+            @php
+            $exp1 = explode(' ', $setting->meta()->link3);
+            @endphp
+            @if (in_array('>', $exp1))
+            @php
+            $link3 = explode('>', $setting->meta()->link3);
+            @endphp
+
+            @else
+            @php
+            $link3[1] = "Link";
+            $link3[0] = "#";
+            @endphp
+            @endif
+
+            @php
+            $exp1 = explode(' ', $setting->meta()->link4);
+            @endphp
+            @if (in_array('>', $exp1))
+            @php
+            $link4 = explode('>', $setting->meta()->link4);
+            @endphp
+
+            @else
+            @php
+            $link4[1] = "Link";
+            $link4[0] = "#";
+            @endphp
+            @endif
+
             <div class="w-full lg:w-6/12 md:px-4">
                 <div class="flex flex-wrap items-top my-5">
                     <div class="w-full lg:w-4/12 px-4 ml-auto mb-5">
@@ -38,19 +105,19 @@
                         <ul class="list-unstyled">
                             <li>
                                 <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                    href="https://www.bmkg.go.id">BMKG Official</a>
+                                    href="{{ $link1[1] }}">{{ $link1[0] }}</a>
                             </li>
                             <li>
                                 <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                    href="https:/meteobaubau.com">BMKG Baubau</a>
+                                    href="{{ $link2[1] }}">{{ $link2[0] }}</a>
                             </li>
                             <li>
                                 <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                    href="https://ptsp.bmkg.go.id">PTSP BMKG</a>
+                                    href="{{ $link3[1] }}">{{ $link3[0] }}</a>
                             </li>
                             <li>
                                 <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                    href="https://aviation.bmkg.go.id">Cuaca Penerbangan</a>
+                                    href="{{ $link4[1] }}">{{ $link4[0] }}</a>
                             </li>
                         </ul>
                     </div>

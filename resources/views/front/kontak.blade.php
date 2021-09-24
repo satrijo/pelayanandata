@@ -52,11 +52,16 @@ Kontak
     </div>
 </section>
 <script>
-    var map = L.map('map').setView([-5.487882,122.61088], 14);
+    var koordinate = {!! json_encode($data->toArray()) !!};
+
+    let latlon = koordinate['latlon'];
+    const pisah = latlon.split(',')
+
+    var map = L.map('map').setView([pisah["0"],pisah["1"]], 14);
     L.esri.basemapLayer('Imagery').addTo(map);
 
-    L.marker([-5.487882,122.57088]).addTo(map)
-    .bindPopup('<b>Stasiun Meteorologi Betoambari Baubau</b><br><br>Kompleks Bandar Udara Betoambari, BMKG, Katobengke, Betoambari, Kota Bau-Bau, Sulawesi Tenggara 93724 <br>Telp: +624022823606')
+    L.marker([pisah["0"],pisah["1"]]).addTo(map)
+    .bindPopup(`<b>${koordinate['kontak']}</b><br><br>${koordinate['alamat']}<br><br>Telp: ${koordinate['telp']}<br>Email: ${koordinate['email']}`)
     .openPopup();
 </script>
 @endsection

@@ -11,7 +11,7 @@
                         Permohonan Data Cuaca
                     </h1>
                     <p class="mt-4 sm:text-base md:text-lg text-gray-300 mb-5">
-                        Untuk mendukung manajemen pengguna layanan Data Online BMKG Baubau dalam rangka meningkatkan
+                        Untuk mendukung manajemen pengguna layanan Data Online BMKG dalam rangka meningkatkan
                         layanan, pemohon dapat
                         melakukan Permohonan data cuaca melalui form aplikasi online.
                     </p>

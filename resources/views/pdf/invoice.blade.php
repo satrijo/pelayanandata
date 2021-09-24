@@ -1,3 +1,4 @@
+@inject('setting','App\Http\Controllers\SettingController')
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,12 +21,14 @@
 
     .gray {
         background-color: lightgray;
+
     }
 
     .abu {
         background-color: lightgray;
-        padding: 2em;
-        margin-bottom: 1.5em;
+        padding-top: 10px;
+        padding-bottom: 30px;
+        margin-bottom: 40px;
     }
 
     .pdt{
@@ -35,24 +38,25 @@
 
 </head>
 <body>
-  <table width="100%">
+  <table width="100%" class="abu">
     <tr>
-        <td valign="top"><img src="{{asset('images/logo_bmkg.png')}}" alt="" width="80"/></td>
-        <td align="right">
+        <td align="center"><img src="{{asset('images/logo_bmkg.png')}}" alt="" width="70" /></td>
+        <td align="left">
             <h1>Badan Metorologi Klimatologi dan Geofisika</h1>
 
-            <u>Stasiun Meteorologi Betoambari Baubau</u>
-            <pre>
-                Komplek Bandar Udara Betoambari
-                Kota Bau-Bau, Sulawesi Tenggara 93724
-                Telepon: (0402) 2823606
-                Whatsapp: +62 811-4037-700
-                www.meteobaubau.com
-            </pre>
+            <u>{{ $setting->kontak()->kontak }}</u><br>
+
+                {{$setting->kontak()->alamat}} -
+                {{$setting->kontak()->telp}} -
+                {{$setting->kontak()->email}} -
+                {{ url('/') }}
+
+
         </td>
     </tr>
 
   </table>
+
 
   <table width="100%">
     <thead>

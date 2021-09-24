@@ -36,7 +36,7 @@
                         Permohonan Data Cuaca
                     </h1>
                     <p class="mt-4 text-lg text-gray-300 mb-5">
-                        Untuk mendukung manajemen pengguna layanan Data Online BMKG Baubau dalam rangka meningkatkan
+                        Untuk mendukung manajemen pengguna layanan Data Online BMKG dalam rangka meningkatkan
                         layanan, pemohon dapat
                         melakukan Permohonan data cuaca melalui form aplikasi online.
                     </p>
@@ -59,7 +59,13 @@
 </div>
 
 <script>
-    var map = L.map('map', {zoomControl: false}).setView([-5.487882,122.61088], 14);
+
+    var koordinate = {!! json_encode($data->toArray()) !!};
+
+    let latlon = koordinate['latlon'];
+    const pisah = latlon.split(',')
+
+    var map = L.map('map', {zoomControl: false}).setView([pisah["0"],pisah["1"]], 9);
     L.esri.basemapLayer('Imagery').addTo(map);
 
 

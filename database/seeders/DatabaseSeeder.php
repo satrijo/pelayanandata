@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             WorkflowsTableSeeder::class,
-            UsersTableSeeder::class
+            UsersTableSeeder::class,
+            ContactTableSeeder::class,
+            SettingsTableSeeder::class,
         ]);
     }
 }

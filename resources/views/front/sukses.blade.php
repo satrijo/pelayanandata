@@ -9,7 +9,7 @@ Monitoring:  {{ $data->status }}
 @section('hero')
 @include('front.layout.asset.hero-page')
 @endsection
-
+@inject('setting','App\Http\Controllers\SettingController')
 @section('content')
 <section class="relative py-16 bg-gray-300">
     <div class="container mx-auto md:px-4">
@@ -29,8 +29,7 @@ Monitoring:  {{ $data->status }}
                                             <h2 class="text-xl font-medium title-font text-gray-900 ">Informasi Pembayaran</h2>
                                             <span>
                                                 Silahkan Melakukan Transfer Ke Rekening<br>
-                                                BANK SYARIAH INDONESIA: 7141499372 <br>
-                                                a/n Satriyo Unggul Wicaksono<br>
+                                                {{ $setting->meta()->rekening }}
                                                 senilai Rp.{{ number_format($data->total,2) }}
                                             </span>
                                             <a href="{{ route('konfirmasi') }}" class="font-medium text-indigo-600 hover:text-indigo-500">
