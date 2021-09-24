@@ -30,7 +30,6 @@ class SettingsTableSeeder extends Seeder
             'nowa' => '082111119138',
             'rekening' => 'BCA 123123123 a.n Satriyo Unggul Wicaksono',
             'wag' => '62821111119138-7171717',
-            'token' => 'token wa',
         ]);
     }
 }
