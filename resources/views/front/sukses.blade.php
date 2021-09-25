@@ -44,11 +44,11 @@ Monitoring:  {{ $data->status }}
                                             <h2 class="text-xl font-medium title-font text-gray-900">Permohonan anda: {{$data->status}}</h2>
                                             <span class="font-mono mb-5">Note: {{$data->infoadmin}} </span>
                                             @if ($data->status == 'Selesai')
-                                                <a href="{{ Storage::url($data->data) }}" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                                <a target="_blank" href="{{ Storage::url($data->data) }}" class="font-medium text-indigo-600 hover:text-indigo-500">
                                                     <p class="w-auto text-center bg-blue-600 text-white rounded-md py-2 px-4 mt-8 mb-3">Download Data Permohonan</p>
                                                 </a>
                                             @endif
-                                            <img class="mt-5" src="{{url('/images/'.strtolower($data->status).'.png')}}" />
+                                            <img class="mt-5 object-cover" src="{{url('/images/'.strtolower($data->status).'.png')}}" />
 
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@ Monitoring:  {{ $data->status }}
                                         <div class="bg-gray-100 p-4 rounded-md">
                                             <h2 class="text-xl font-medium title-font text-gray-900">{{$data->status}}, Silahkan Menunggu Konfirmasi Admin</h2>
                                             {{-- <span class="font-mono mb-5">Note: {{$data->infoadmin}} </span> --}}
-                                            <img class="mt-5" src="{{url('/images/diterima.png')}}" />
+                                            <img class="mt-5 object-cover" src="{{url('/images/diterima.png')}}" />
 
                                         </div>
                                     </div>
@@ -70,7 +70,7 @@ Monitoring:  {{ $data->status }}
                                         <div class="bg-gray-100 p-4 rounded-md">
                                             <h2 class="text-xl font-medium title-font text-gray-900">{{$data->status}}, Silahkan berdiskusi dengan admin</h2>
                                             <span class="font-mono mb-5">Note: {{$data->infoadmin}} </span>
-                                            <img class="mt-5" src="{{url('/images/bermasalah.png')}}" />
+                                            <img class="mt-5 object-cover" src="{{url('/images/bermasalah.png')}}" />
 
                                         </div>
                                     </div>
