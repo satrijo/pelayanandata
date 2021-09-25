@@ -169,11 +169,11 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $jenisPelayanan = $request->jenispelayanan;
-        $validasiNolRupiah = $jenisPelayanan == 'nolrupiah' ? 'required|mimes:jpg,bmp,png,doc,docx,pdf|max:1500' : 'nullable|mimes:jpg,bmp,png,doc,docx,pdf|max:1500';
+        $validasiNolRupiah = $jenisPelayanan == 'nolrupiah' ? 'required|mimes:pdf|max:1500' : 'nullable|mimes:pdf|max:1500';
 
         $validated = $request->validate([
-            'suratpermohonan'   => 'required|mimes:jpg,bmp,png,doc,docx,pdf|max:1500',
-            'scanktp'           => 'required|mimes:jpg,bmp,png,doc,docx,pdf|max:1500',
+            'suratpermohonan'   => 'required|mimes:pdf|max:1500',
+            'scanktp'           => 'required|mimes:pdf|max:1500',
             'suratpengantar'    =>  $validasiNolRupiah,
             'suratpernyataan'   =>  $validasiNolRupiah,
             'proposal'          =>  $validasiNolRupiah,

@@ -29,6 +29,13 @@ class HomeController extends Controller
     public function monitoringCek(Request $request)
     {
         $id = $request->invoice;
+
+        $data = Order::where('invoice', $id)->first();
+
+        if(is_null($data)){
+            return back()->with('gagal', 'Invoice tidak ditemukan');
+        }
+
         return redirect()->route('order.sukses', ['id' => $id])->withInput();
     }
 

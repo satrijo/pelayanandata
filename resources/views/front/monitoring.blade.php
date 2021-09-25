@@ -19,6 +19,13 @@ Monitoring
                 <form action="{{ route('monitoring.cek') }}" method="POST">
                     @csrf
                     <div class="auto-cols-max sm:mb-5 md:mb-0  md:p-52 bg-gray-50">
+                        @if ($message = Session::get('gagal'))
+                        <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
+                            <span class="inline-block align-middle mr-8">
+                                <b class="capitalize">Gagal</b> {{ $message }}
+                            </span>
+                        </div>
+                        @endif
                         <label class="block text-sm font-medium text-gray-700">
                             Nomor Invoice
                         </label>
