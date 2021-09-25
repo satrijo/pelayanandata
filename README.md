@@ -1,4 +1,4 @@
-<p align="center"><a href="https://ptsp.joglohub.com" target="_blank"><img src="https://joglohub.com/storage/image/articles/qbDTBxejDPP0Bd98KMMMZ30Hukb6yiGkJwq7EeJS.png" width="400"></a></p>
+<p align="center"><a href="https://ptsp.joglohub.com" target="_blank"><img src="https://i.ibb.co/SfGvVnX/screenshot-ptsp-joglohub-com-2021-09-22-12-28-14.png" width="400"></a></p>
 
 <p align="center">
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
