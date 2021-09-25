@@ -15,22 +15,22 @@
                     Hubungi kami melalui social media, Kami akan merespon 1-2 hari kerja.
                 </h5>
                 <div class="mt-6 flex">
-                    <a
+                    <a target="_blank"
                         class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                         href="{{ $setting->meta()->facebook }}">
                         <i class="flex fab fa-facebook"></i>
                     </a>
-                    <a
+                    <a target="_blank"
                         class="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                         href="{{ $setting->meta()->twitter }}">
                         <i class="flex fab fa-twitter"></i>
                     </a>
-                    <a
+                    <a target="_blank"
                         class="bg-white text-red-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                         href="{{ $setting->meta()->youtube }}">
                         <i class="flex fab fa-youtube"></i>
                     </a>
-                    <a
+                    <a target="_blank"
                         class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                         href="{{ $setting->meta()->instagram }}">
                         <i class="flex fab fa-instagram"></i>
@@ -104,19 +104,19 @@
                         <span class="block uppercase text-gray-600 text-sm font-semibold mb-2">Useful Links</span>
                         <ul class="list-unstyled">
                             <li>
-                                <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                <a target="_blank" class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                                     href="{{ $link1[1] }}">{{ $link1[0] }}</a>
                             </li>
                             <li>
-                                <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                <a target="_blank" class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                                     href="{{ $link2[1] }}">{{ $link2[0] }}</a>
                             </li>
                             <li>
-                                <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                <a target="_blank" class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                                     href="{{ $link3[1] }}">{{ $link3[0] }}</a>
                             </li>
                             <li>
-                                <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                <a target="_blank" class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                                     href="{{ $link4[1] }}">{{ $link4[0] }}</a>
                             </li>
                         </ul>
@@ -151,7 +151,7 @@
             <div class="w-full md:w-4/12 px-4 mx-auto text-center">
                 <div class="text-sm text-gray-600 font-semibold py-1">
                     Copyright © 2021 Aplikasi PTSP by
-                    <a href="https://joglohub.com" class="text-gray-600 hover:text-gray-900">Satriyo & Joglohub</a>.
+                    <a target="_blank" href="https://joglohub.com" class="text-gray-600 hover:text-gray-900">Satriyo & Joglohub</a>.
                 </div>
             </div>
         </div>

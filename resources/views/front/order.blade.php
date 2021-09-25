@@ -332,7 +332,7 @@
                                         class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                         Dari
                                     </span>
-                                    <input data-language='en' autocomplete="off" required placeholder="contoh: 15/03/2020" type="text" name="periodedari" class="datepicker-here focus:ring-indigo-500 focus:border-indigo-500 md:flex-1 sm:rounded-md md:rounded-none md:rounded-l-md sm:text-sm border-gray-300">
+                                    <input data-language='en' value="{{ old('periodedari') }}" autocomplete="off" required placeholder="contoh: 15/03/2020" type="text" name="periodedari" class="datepicker-here focus:ring-indigo-500 focus:border-indigo-500 md:flex-1 sm:rounded-md md:rounded-none md:rounded-l-md sm:text-sm border-gray-300">
                                     @error('periodedari')
                                             <p class="text-sm text-red-600 pt-4">{{ $message }}</p>
                                     @enderror
@@ -345,7 +345,7 @@
                                         class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                         Sampai
                                     </span>
-                                    <input data-language='en' autocomplete="off" required placeholder="contoh: 21/03/2020" type="text" name="periodesampai"
+                                    <input data-language='en' value="{{ old('periodesampai') }}" autocomplete="off" required placeholder="contoh: 21/03/2020" type="text" name="periodesampai"
                                         class="datepicker-here focus:ring-indigo-500 focus:border-indigo-500 md:flex-1 sm:rounded-md md:rounded-none md:rounded-l-md sm:text-sm border-gray-300">
                                     @error('periodesampai')
                                             <p class="text-sm text-red-600 pt-4">{{ $message }}</p>

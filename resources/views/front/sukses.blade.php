@@ -32,7 +32,7 @@ Monitoring:  {{ $data->status }}
                                                 {{ $setting->meta()->rekening }}
                                                 senilai Rp.{{ number_format($data->total,2) }}
                                             </span>
-                                            <a href="{{ route('konfirmasi') }}" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                            <a href="{{ route('konfirmasi') }}" target="_blank" class="font-medium text-indigo-600 hover:text-indigo-500">
                                                 <p class="w-auto text-center bg-blue-600 text-white rounded-md py-2 px-4 mt-8 mb-3">Kirim konfirmasi Pembayaran</p>
                                             </a>
                                         </div>
@@ -91,7 +91,7 @@ Monitoring:  {{ $data->status }}
                                         <p class="mx-auto leading-relaxed text-base md:text-right">{{ $data->nama }}</p>
                                         <p class="mx-auto leading-relaxed text-base md:text-right">{{ $data->instansi }}</p>
                                         <p class="mx-auto leading-relaxed text-base md:text-right">{{ $data->email }} - {{ $data->nohp }}</p>
-                                        <a href="{{ route('order.pdf', ['id'=>$data->invoice]) }}">
+                                        <a href="{{ route('order.pdf', ['id'=>$data->invoice]) }}" target="_blank">
                                             <p class="text-center bg-blue-600 text-white rounded-md py-2 px-4">Download Invoice</p>
                                         </a>
                                     </div>
