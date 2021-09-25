@@ -42,7 +42,7 @@
                     </td>
 
                     <td class="px-4 py-3 text-sm">
-                        <a href="{{ Storage::url($d->bukti) }}">Download</a>
+                        <a target="_blank" href="{{ Storage::url($d->bukti) }}">Download</a>
                     </td>
 
                     <td class="px-4 py-3 text-sm">
