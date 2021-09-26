@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkflowController;
 
 use Illuminate\Support\Facades\Route;
@@ -90,9 +91,14 @@ Route::group(['middleware' => 'revalidate'], function()
         Route::put('/contact/update/{id}', [contactController::class, 'update'])->name('contact.update');
 
         //setting
-
         Route::get('/setting', [SettingController::class, 'edit'])->name('setting.edit');
         Route::put('/setting/update/{id}', [SettingController::class, 'update'])->name('setting.update');
+
+        //User
+        Route::get('/user', [UserController::class, 'edit'])->name('user.edit');
+        Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
+
+
     });
 
     Route::get('/form', [OrderController::class, 'create'])->name('order');
