@@ -23,7 +23,7 @@ Pada aplikasi ini memiliki beberapa fitur yang dapat menunjang permohonan data, 
 <li>Invoice format PDF</li>
 </ol>
 
-Aplikasi PTSP dirancang menggunakan bahasa pemrograman PHP 7.4 dan database MySQL, dan Tailwind CSS, serta menggunakan framework Laravel 8 sebagai bagian inti dari aplikasi ini. Kebutuhan pelayanan data dapat di atasi dengan stack tersebut, hanya saja untuk kedepannya dibutuhkan front end yang lebih mumpuni dengan menggunakan library Javascript agar tampilan lebih user friendly serta menarik dari sisi client.
+Aplikasi PTSP dibangun menggunakan bahasa pemrograman PHP 7.4 dan database MySQL, dan Tailwind CSS, serta menggunakan framework Laravel 8 sebagai bagian inti dari aplikasi ini. Kebutuhan pelayanan data dapat di atasi dengan stack tersebut, hanya saja untuk kedepannya dibutuhkan front end yang lebih mumpuni dengan menggunakan library Javascript agar tampilan lebih user friendly serta menarik dari sisi client.
 
 Berikut beberapa sisi tampilan dari aplikasi dapat di lihat di halaman demo: https://ptsp.joglohub.com
 
