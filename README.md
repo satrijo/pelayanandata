@@ -8,18 +8,20 @@ Aplikasi PTSP adalah sebuah aplikasi yang dirancang untuk memenuhi kebutuhan pel
 
 Pada aplikasi ini memiliki beberapa fitur yang dapat menunjang permohonan data, antara lain:
 
-*Halaman utama
-*Form permohonan data
-*Monitoring (Tracking permohonan)
-*Konfirmasi pembayaran
-*Tarif data
-*Alur permohonan
-*Form survey (link out)
-*FAQ
-*Kontak
-*Notifikasi Email
-*Notifikasi Whatsapp (Group & personal)
-*Invoice format PDF
+<ol>
+<li>Halaman utama</li>
+<li>Form permohonan data</li>
+<li>Monitoring (Tracking permohonan)</li>
+<li>Konfirmasi pembayaran</li>
+<li>Tarif data</li>
+<li>Alur permohonan</li>
+<li>Form survey (link out)</li>
+<li>FAQ</li>
+<li>Kontak</li>
+<li>Notifikasi Email</li>
+<li>Notifikasi Whatsapp (Group & personal)</li>
+<li>Invoice format PDF</li>
+</ol>
 
 Aplikasi PTSP dirancang menggunakan bahasa pemrograman PHP 7.4 dan database MySQL, dan Tailwind CSS, serta menggunakan framework Laravel 8 sebagai bagian inti dari aplikasi ini. Kebutuhan pelayanan data dapat di atasi dengan stack tersebut, hanya saja untuk kedepannya dibutuhkan front end yang lebih mumpuni dengan menggunakan library Javascript agar tampilan lebih user friendly serta menarik dari sisi client.
 
