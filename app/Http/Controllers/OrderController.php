@@ -227,7 +227,7 @@ class OrderController extends Controller
             $hasil = $tillDate - $fromDate;
             $periode = ($hasil + 1);
 
-            dd($periode);
+
         } else {
             $periode = 1;
         }
